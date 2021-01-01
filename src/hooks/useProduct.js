@@ -72,11 +72,12 @@ const useProduct = (productId) => {
         })
         .catch((err) => setError(err));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const save = () => {
+  const save = async () => {
     if (productId === "new") {
-      return null;
+      return firebase.firestore().collection("products").add(product);
     } else {
       return firebase
         .firestore()
@@ -86,12 +87,17 @@ const useProduct = (productId) => {
     }
   };
 
+  const remove = async (id) => {
+    return firebase.firestore().collection("products").doc(id).delete();
+  };
+
   return {
     error,
     loading,
     product,
     setProduct,
     save,
+    remove,
   };
 };
 

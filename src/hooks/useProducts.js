@@ -21,6 +21,7 @@ const useProducts = () => {
         setProducts(products);
       })
       .catch((err) => setError(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

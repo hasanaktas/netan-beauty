@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProduct, useSnack } from "hooks";
 import {
   Container,
@@ -15,39 +15,26 @@ import {
   AccordionSummary,
   IconButton,
   Box,
-  makeStyles,
-  ButtonBase,
+  Dialog,
+  DialogTitle,
+  DialogActions,
   Button,
 } from "@material-ui/core";
-import { SketchPicker, TwitterPicker } from "react-color";
+import { TwitterPicker } from "react-color";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import { Page } from "components";
-import { IconPicker } from "./components";
-
-const useStyles = makeStyles((theme) => ({
-  imageButton: {
-    position: "relative",
-    width: 100,
-    height: 100,
-    marginRight: theme.spacing(2),
-  },
-
-  imageSrc: {
-    width: 100,
-    height: 100,
-    objectFit: "cover",
-  },
-  input: {
-    display: "none",
-  },
-}));
+import { IconPicker, ImagePicker } from "./components";
 
 const AdminProductPage = () => {
-  const classes = useStyles();
+  let navigate = useNavigate();
   const snack = useSnack();
+  const [dialog, setDialog] = useState(false);
   const { productId } = useParams();
-  const { error, loading, product, setProduct, save } = useProduct(productId);
+  const { error, loading, product, setProduct, save, remove } = useProduct(
+    productId
+  );
   if (loading) {
     return <div>Yükleniyor</div>;
   }
@@ -61,6 +48,17 @@ const AdminProductPage = () => {
           <CardHeader
             subheader={productId === "new" ? "Yeni Ürün" : productId}
             title={productId === "new" ? "Yeni" : product.name.tr}
+            action={
+              productId === "new" ? null : (
+                <IconButton
+                  onClick={() => {
+                    setDialog(true);
+                  }}
+                >
+                  <RemoveIcon />
+                </IconButton>
+              )
+            }
           />
           <Divider />
           <CardContent>
@@ -201,48 +199,42 @@ const AdminProductPage = () => {
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                {product.options.map((item, index) => {
+                {product.options.map((item, productIndex) => {
                   return (
-                    <Accordion key={index}>
+                    <Accordion key={productIndex}>
                       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography> Seçenek {index + 1}</Typography>
+                        <Typography> Seçenek {productIndex + 1}</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Grid container spacing={2}>
                           <Grid item xs={12} md={6}>
                             <Box display="flex" alignItems="center">
-                              {item.images.map((item, imageIndex) => {
-                                return (
-                                  <ButtonBase
-                                    focusRipple
-                                    key={imageIndex}
-                                    className={classes.imageButton}
-                                  >
-                                    <img
-                                      src={item}
-                                      className={classes.imageSrc}
-                                    />
-                                  </ButtonBase>
-                                );
-                              })}
-                              {item.images.length < 3 && (
-                                <>
-                                  <input
-                                    accept="image/*"
-                                    className={classes.input}
-                                    id="icon-button-file"
-                                    type="file"
-                                  />
-                                  <label htmlFor="icon-button-file">
-                                    <IconButton
-                                      variant="contained"
-                                      component="span"
-                                    >
-                                      <AddIcon />
-                                    </IconButton>
-                                  </label>
-                                </>
-                              )}
+                              <ImagePicker
+                                length={4}
+                                order={productIndex}
+                                images={item.images}
+                                removeImage={(selected) => {
+                                  const newOptions = [...product.options];
+                                  newOptions[productIndex].images.splice(
+                                    selected,
+                                    1
+                                  );
+                                  setProduct({
+                                    ...product,
+                                    options: [...newOptions],
+                                  });
+                                  snack("Silme Başarılı", "success");
+                                }}
+                                setSrc={(e, order) => {
+                                  let newOptions = [...product.options];
+                                  newOptions[order].images.push(e);
+                                  setProduct({
+                                    ...product,
+                                    options: [...newOptions],
+                                  });
+                                  snack("Yükleme Başarılı", "success");
+                                }}
+                              />
                             </Box>
                           </Grid>
                           <Grid item container xs={12} md={6} spacing={3}>
@@ -266,7 +258,7 @@ const AdminProductPage = () => {
                                 color={item.color}
                                 onChange={(e) => {
                                   const newOptions = [...product.options];
-                                  newOptions[index].color = e.hex;
+                                  newOptions[productIndex].color = e.hex;
 
                                   setProduct({
                                     ...product,
@@ -282,7 +274,7 @@ const AdminProductPage = () => {
                                     fullWidth
                                     onChange={(e) => {
                                       const newOptions = [...product.options];
-                                      newOptions[index].saleChannel[
+                                      newOptions[productIndex].saleChannel[
                                         saleIndex
                                       ].link = e.target.value;
 
@@ -553,6 +545,25 @@ const AdminProductPage = () => {
           </CardContent>
         </Card>
       </Container>
+      <Dialog onClose={() => setDialog(false)} open={dialog}>
+        <DialogTitle>Ürünü Sil!</DialogTitle>
+        <DialogActions>
+          <Button onClick={() => setDialog(false)} color="primary">
+            Vazgeç
+          </Button>
+          <Button
+            onClick={() => {
+              remove(productId).then(() => {
+                snack("Silme Başarılı", "success");
+                navigate(`/admin/products`);
+              });
+            }}
+            color="primary"
+          >
+            Sil
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Page>
   );
 };

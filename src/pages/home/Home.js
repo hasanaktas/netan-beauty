@@ -3,7 +3,7 @@ import { Typography, Button } from "@material-ui/core";
 import { Page, Logo } from "components";
 import { useLocale, useProducts } from "hooks";
 const HomePage = () => {
-  const { error, loading, products } = useProducts();
+  const { products } = useProducts();
 
   useEffect(() => {
     console.log(products);

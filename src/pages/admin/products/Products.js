@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   List,
   ListItem,
   ListItemText,
   Container,
   Card,
-  Grid,
   CardHeader,
   Divider,
   CardContent,
@@ -47,6 +46,7 @@ const AdminProductPage = () => {
               {products.map((item, index) => {
                 return (
                   <ListItem
+                    key={index}
                     button
                     onClick={() => navigate(`/admin/product/${item.id}`)}
                   >
