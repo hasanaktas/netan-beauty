@@ -18,11 +18,11 @@ import {
   makeStyles,
   ButtonBase,
 } from "@material-ui/core";
-import { SketchPicker } from "react-color";
+import { SketchPicker, TwitterPicker } from "react-color";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import { Page } from "components";
+import { IconPicker } from "./components";
 
 const useStyles = makeStyles((theme) => ({
   imageButton: {
@@ -244,6 +244,35 @@ const AdminProductPage = () => {
                             </Box>
                           </Grid>
                           <Grid item container xs={12} md={6} spacing={3}>
+                            <Grid item xs={12}>
+                              <Box
+                                display="flex"
+                                alignItems="center"
+                                padding={2}
+                              >
+                                <Box
+                                  bgcolor={item.color}
+                                  width={30}
+                                  height={30}
+                                  marginRight={2}
+                                  borderRadius={5}
+                                />
+                                <Typography>Renk Seç</Typography>
+                              </Box>
+
+                              <TwitterPicker
+                                color={item.color}
+                                onChange={(e) => {
+                                  const newOptions = [...product.options];
+                                  newOptions[index].color = e.hex;
+
+                                  setProduct({
+                                    ...product,
+                                    options: [...newOptions],
+                                  });
+                                }}
+                              />
+                            </Grid>
                             {item.saleChannel.map((sale, saleIndex) => {
                               return (
                                 <Grid key={saleIndex} item xs={12}>
@@ -271,6 +300,161 @@ const AdminProductPage = () => {
                         </Grid>
                       </AccordionDetails>
                     </Accordion>
+                  );
+                })}
+              </Grid>
+              <Grid item container xs={12} spacing={3}>
+                <Grid item xs={12}>
+                  <Typography variant="h6">Özellikler</Typography>
+                </Grid>
+
+                {product.properties.map((item, index) => {
+                  return (
+                    <Grid key={index} item xs={12} md={4}>
+                      <Box display="flex" flexDirection="column">
+                        <Box
+                          p={2}
+                          display="flex"
+                          width="100%"
+                          justifyContent="center"
+                        >
+                          <IconPicker
+                            selectedIcon={item.icon}
+                            setSelectedIcon={(e) => {
+                              const newProperties = [...product.properties];
+                              newProperties[index].icon = e;
+                              setProduct({
+                                ...product,
+                                properties: [...newProperties],
+                              });
+                            }}
+                          />
+                        </Box>
+                        <TextField
+                          fullWidth
+                          label={`Özellik ${index + 1} - Türkçe`}
+                          value={item.title.tr}
+                          variant="outlined"
+                          onChange={(e) => {
+                            const newProperties = [...product.properties];
+                            newProperties[index].title.tr = e.target.value;
+                            setProduct({
+                              ...product,
+                              properties: [...newProperties],
+                            });
+                          }}
+                        />
+                        <TextField
+                          fullWidth
+                          label={`Özellik ${index + 1} - İngilizce`}
+                          value={item.title.en}
+                          variant="outlined"
+                          onChange={(e) => {
+                            const newProperties = [...product.properties];
+                            newProperties[index].title.en = e.target.value;
+                            setProduct({
+                              ...product,
+                              properties: [...newProperties],
+                            });
+                          }}
+                          style={{ marginTop: 20 }}
+                        />
+                      </Box>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+              <Grid item container xs={12} spacing={3}>
+                <Grid item xs={12}>
+                  <Typography variant="h6">Kutular</Typography>
+                </Grid>
+                {product.boxes.map((item, index) => {
+                  return (
+                    <Grid item xs={12} md={4}>
+                      <Box display="flex" flexDirection="column">
+                        <Typography align="center">{`Kutu ${
+                          index + 1
+                        }`}</Typography>
+                        <Box
+                          p={2}
+                          display="flex"
+                          width="100%"
+                          justifyContent="center"
+                        >
+                          <IconPicker
+                            selectedIcon={item.icon}
+                            setSelectedIcon={(e) => {
+                              const newBoxes = [...product.boxes];
+                              newBoxes[index].icon = e;
+                              setProduct({
+                                ...product,
+                                boxes: [...newBoxes],
+                              });
+                            }}
+                          />
+                        </Box>
+                        <TextField
+                          fullWidth
+                          label={`Başlık - Türkçe`}
+                          value={item.title.tr}
+                          variant="outlined"
+                          style={{ marginTop: 20 }}
+                          onChange={(e) => {
+                            const newBoxes = [...product.boxes];
+                            newBoxes[index].title.tr = e.target.value;
+                            setProduct({
+                              ...product,
+                              boxes: [...newBoxes],
+                            });
+                          }}
+                        />
+                        <TextField
+                          fullWidth
+                          label={`Başlık - İngilizce`}
+                          value={item.title.en}
+                          variant="outlined"
+                          style={{ marginTop: 20 }}
+                          onChange={(e) => {
+                            const newBoxes = [...product.boxes];
+                            newBoxes[index].title.en = e.target.value;
+                            setProduct({
+                              ...product,
+                              boxes: [...newBoxes],
+                            });
+                          }}
+                        />
+                        <TextField
+                          fullWidth
+                          label={`Alt Başlık - Türkçe`}
+                          value={item.subTitle.tr}
+                          variant="outlined"
+                          style={{ marginTop: 20 }}
+                          onChange={(e) => {
+                            const newBoxes = [...product.boxes];
+                            newBoxes[index].subTitle.tr = e.target.value;
+                            setProduct({
+                              ...product,
+                              boxes: [...newBoxes],
+                            });
+                          }}
+                        />
+                        <TextField
+                          fullWidth
+                          label={`Alt Başlık - İngilizce`}
+                          value={item.subTitle.en}
+                          variant="outlined"
+                          onChange={(e) => {
+                            const newBoxes = [...product.boxes];
+                            newBoxes[index].subTitle.en = e.target.value;
+                            setProduct({
+                              ...product,
+                              boxes: [...newBoxes],
+                            });
+                          }}
+                          style={{ marginTop: 20 }}
+                        />
+                      </Box>
+                    </Grid>
                   );
                 })}
               </Grid>

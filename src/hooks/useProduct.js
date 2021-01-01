@@ -28,6 +28,64 @@ const useProduct = (productId) => {
         ],
       },
     ],
+    properties: [
+      {
+        icon: 0,
+        title: {
+          tr: "",
+          en: "",
+        },
+      },
+      {
+        icon: 1,
+        title: {
+          tr: "",
+          en: "",
+        },
+      },
+      {
+        icon: 2,
+        title: {
+          tr: "",
+          en: "",
+        },
+      },
+    ],
+    boxes: [
+      {
+        icon: 2,
+        title: {
+          tr: "",
+          en: "",
+        },
+        subTitle: {
+          tr: "",
+          en: "",
+        },
+      },
+      {
+        icon: 2,
+        title: {
+          tr: "",
+          en: "",
+        },
+        subTitle: {
+          tr: "",
+          en: "",
+        },
+      },
+      {
+        icon: 2,
+        title: {
+          tr: "",
+          en: "",
+        },
+        subTitle: {
+          tr: "",
+          en: "",
+        },
+      },
+    ],
   });
 
   useEffect(() => {
