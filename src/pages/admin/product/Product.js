@@ -524,6 +524,79 @@ const AdminProductPage = () => {
                 })}
               </Grid>
               <Grid item xs={12}>
+                <Divider />
+              </Grid>
+              <Grid item xs={12}>
+                <Box display="flex" alignItems="center">
+                  <Typography variant="h6">Tanıtım</Typography>
+                  <IconButton
+                    variant="contained"
+                    onClick={() =>
+                      setProduct({
+                        ...product,
+                        boxes: [
+                          ...product.boxes,
+                          {
+                            icon: 0,
+                            title: {
+                              tr: "",
+                              en: "",
+                            },
+                            subTitle: {
+                              tr: "",
+                              en: "",
+                            },
+                          },
+                        ],
+                      })
+                    }
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  fullWidth
+                  label={`Başlık - Türkçe`}
+                  value={product.promotion.title.tr}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  fullWidth
+                  label={`Başlık - İngilizce`}
+                  value={product.promotion.title.en}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <ImagePicker
+                  length={1}
+                  order={"0-promotion"}
+                  images={product.promotion.images}
+                  removeImage={(selected) => {
+                    const newPromotion = { ...product.promotion };
+                    newPromotion.images.splice(selected, 1);
+                    setProduct({
+                      ...product,
+                      promotion: { ...newPromotion },
+                    });
+                    snack("Silme Başarılı", "success");
+                  }}
+                  setSrc={(e, order) => {
+                    const newPromotion = { ...product.promotion };
+                    newPromotion.images.push(e);
+                    setProduct({
+                      ...product,
+                      promotion: { ...newPromotion },
+                    });
+                    snack("Yükleme Başarılı", "success");
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <Button
                   fullWidth
                   variant="contained"

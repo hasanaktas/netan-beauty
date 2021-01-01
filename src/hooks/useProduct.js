@@ -50,6 +50,12 @@ const useProduct = (productId) => {
         },
       },
     ],
+    promotion: {
+      title: {
+        tr: "",
+        en: "",
+      },
+    },
   });
 
   useEffect(() => {
