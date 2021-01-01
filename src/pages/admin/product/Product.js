@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProduct } from "hooks";
+import { useProduct, useSnack } from "hooks";
 import {
   Container,
   Card,
@@ -17,6 +17,7 @@ import {
   Box,
   makeStyles,
   ButtonBase,
+  Button,
 } from "@material-ui/core";
 import { SketchPicker, TwitterPicker } from "react-color";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -44,8 +45,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminProductPage = () => {
   const classes = useStyles();
+  const snack = useSnack();
   const { productId } = useParams();
-  const { error, loading, product, setProduct } = useProduct(productId);
+  const { error, loading, product, setProduct, save } = useProduct(productId);
   if (loading) {
     return <div>Yükleniyor</div>;
   }
@@ -203,7 +205,7 @@ const AdminProductPage = () => {
                   return (
                     <Accordion key={index}>
                       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography> SEÇENEK {index + 1}</Typography>
+                        <Typography> Seçenek {index + 1}</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Grid container spacing={2}>
@@ -257,7 +259,7 @@ const AdminProductPage = () => {
                                   marginRight={2}
                                   borderRadius={5}
                                 />
-                                <Typography>Renk Seç</Typography>
+                                <Typography>Ürün Rengi</Typography>
                               </Box>
 
                               <TwitterPicker
@@ -303,160 +305,249 @@ const AdminProductPage = () => {
                   );
                 })}
               </Grid>
-              <Grid item container xs={12} spacing={3}>
-                <Grid item xs={12}>
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
+              <Grid item xs={12}>
+                <Box display="flex" alignItems="center">
                   <Typography variant="h6">Özellikler</Typography>
-                </Grid>
-
+                  <IconButton
+                    variant="contained"
+                    onClick={() =>
+                      setProduct({
+                        ...product,
+                        properties: [
+                          ...product.properties,
+                          {
+                            icon: 0,
+                            title: {
+                              tr: "",
+                              en: "",
+                            },
+                          },
+                        ],
+                      })
+                    }
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
                 {product.properties.map((item, index) => {
                   return (
-                    <Grid key={index} item xs={12} md={4}>
-                      <Box display="flex" flexDirection="column">
-                        <Box
-                          p={2}
-                          display="flex"
-                          width="100%"
-                          justifyContent="center"
-                        >
-                          <IconPicker
-                            selectedIcon={item.icon}
-                            setSelectedIcon={(e) => {
-                              const newProperties = [...product.properties];
-                              newProperties[index].icon = e;
-                              setProduct({
-                                ...product,
-                                properties: [...newProperties],
-                              });
-                            }}
-                          />
-                        </Box>
-                        <TextField
-                          fullWidth
-                          label={`Özellik ${index + 1} - Türkçe`}
-                          value={item.title.tr}
-                          variant="outlined"
-                          onChange={(e) => {
-                            const newProperties = [...product.properties];
-                            newProperties[index].title.tr = e.target.value;
-                            setProduct({
-                              ...product,
-                              properties: [...newProperties],
-                            });
-                          }}
-                        />
-                        <TextField
-                          fullWidth
-                          label={`Özellik ${index + 1} - İngilizce`}
-                          value={item.title.en}
-                          variant="outlined"
-                          onChange={(e) => {
-                            const newProperties = [...product.properties];
-                            newProperties[index].title.en = e.target.value;
-                            setProduct({
-                              ...product,
-                              properties: [...newProperties],
-                            });
-                          }}
-                          style={{ marginTop: 20 }}
-                        />
-                      </Box>
-                    </Grid>
+                    <Accordion key={index}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography> Özellik {index + 1}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Grid container spacing={3}>
+                          <Grid item xs={12}>
+                            <Box
+                              p={2}
+                              display="flex"
+                              width="100%"
+                              justifyContent="center"
+                            >
+                              <IconPicker
+                                selectedIcon={item.icon}
+                                setSelectedIcon={(e) => {
+                                  const newProperties = [...product.properties];
+                                  newProperties[index].icon = e;
+                                  setProduct({
+                                    ...product,
+                                    properties: [...newProperties],
+                                  });
+                                }}
+                              />
+                            </Box>
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Baslık - Türkçe`}
+                              value={item.title.tr}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newProperties = [...product.properties];
+                                newProperties[index].title.tr = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  properties: [...newProperties],
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Baslık - İngilizce`}
+                              value={item.title.en}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newProperties = [...product.properties];
+                                newProperties[index].title.en = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  properties: [...newProperties],
+                                });
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
                   );
                 })}
               </Grid>
-              <Grid item container xs={12} spacing={3}>
-                <Grid item xs={12}>
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
+              <Grid item xs={12}>
+                <Box display="flex" alignItems="center">
                   <Typography variant="h6">Kutular</Typography>
-                </Grid>
+                  <IconButton
+                    variant="contained"
+                    onClick={() =>
+                      setProduct({
+                        ...product,
+                        boxes: [
+                          ...product.boxes,
+                          {
+                            icon: 0,
+                            title: {
+                              tr: "",
+                              en: "",
+                            },
+                            subTitle: {
+                              tr: "",
+                              en: "",
+                            },
+                          },
+                        ],
+                      })
+                    }
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
                 {product.boxes.map((item, index) => {
                   return (
-                    <Grid item xs={12} md={4}>
-                      <Box display="flex" flexDirection="column">
-                        <Typography align="center">{`Kutu ${
-                          index + 1
-                        }`}</Typography>
-                        <Box
-                          p={2}
-                          display="flex"
-                          width="100%"
-                          justifyContent="center"
-                        >
-                          <IconPicker
-                            selectedIcon={item.icon}
-                            setSelectedIcon={(e) => {
-                              const newBoxes = [...product.boxes];
-                              newBoxes[index].icon = e;
-                              setProduct({
-                                ...product,
-                                boxes: [...newBoxes],
-                              });
-                            }}
-                          />
-                        </Box>
-                        <TextField
-                          fullWidth
-                          label={`Başlık - Türkçe`}
-                          value={item.title.tr}
-                          variant="outlined"
-                          style={{ marginTop: 20 }}
-                          onChange={(e) => {
-                            const newBoxes = [...product.boxes];
-                            newBoxes[index].title.tr = e.target.value;
-                            setProduct({
-                              ...product,
-                              boxes: [...newBoxes],
-                            });
-                          }}
-                        />
-                        <TextField
-                          fullWidth
-                          label={`Başlık - İngilizce`}
-                          value={item.title.en}
-                          variant="outlined"
-                          style={{ marginTop: 20 }}
-                          onChange={(e) => {
-                            const newBoxes = [...product.boxes];
-                            newBoxes[index].title.en = e.target.value;
-                            setProduct({
-                              ...product,
-                              boxes: [...newBoxes],
-                            });
-                          }}
-                        />
-                        <TextField
-                          fullWidth
-                          label={`Alt Başlık - Türkçe`}
-                          value={item.subTitle.tr}
-                          variant="outlined"
-                          style={{ marginTop: 20 }}
-                          onChange={(e) => {
-                            const newBoxes = [...product.boxes];
-                            newBoxes[index].subTitle.tr = e.target.value;
-                            setProduct({
-                              ...product,
-                              boxes: [...newBoxes],
-                            });
-                          }}
-                        />
-                        <TextField
-                          fullWidth
-                          label={`Alt Başlık - İngilizce`}
-                          value={item.subTitle.en}
-                          variant="outlined"
-                          onChange={(e) => {
-                            const newBoxes = [...product.boxes];
-                            newBoxes[index].subTitle.en = e.target.value;
-                            setProduct({
-                              ...product,
-                              boxes: [...newBoxes],
-                            });
-                          }}
-                          style={{ marginTop: 20 }}
-                        />
-                      </Box>
-                    </Grid>
+                    <Accordion key={index}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography> Kutu {index + 1}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Grid container spacing={3}>
+                          <Grid item xs={12}>
+                            <Box
+                              p={2}
+                              display="flex"
+                              width="100%"
+                              justifyContent="center"
+                            >
+                              <IconPicker
+                                selectedIcon={item.icon}
+                                setSelectedIcon={(e) => {
+                                  const newBoxes = [...product.boxes];
+                                  newBoxes[index].icon = e;
+                                  setProduct({
+                                    ...product,
+                                    boxes: [...newBoxes],
+                                  });
+                                }}
+                              />
+                            </Box>
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Başlık - Türkçe`}
+                              value={item.title.tr}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newBoxes = [...product.boxes];
+                                newBoxes[index].title.tr = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  boxes: [...newBoxes],
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Başlık - İngilizce`}
+                              value={item.title.en}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newBoxes = [...product.boxes];
+                                newBoxes[index].title.en = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  boxes: [...newBoxes],
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Alt Başlık - Türkçe`}
+                              value={item.subTitle.tr}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newBoxes = [...product.boxes];
+                                newBoxes[index].subTitle.tr = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  boxes: [...newBoxes],
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Alt Başlık - İngilizce`}
+                              value={item.subTitle.en}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newBoxes = [...product.boxes];
+                                newBoxes[index].subTitle.en = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  boxes: [...newBoxes],
+                                });
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
                   );
                 })}
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    save()
+                      .then(() => {
+                        snack("KAYIT BAŞARILI", "success");
+                      })
+                      .catch(() => {
+                        snack("HATA MEYDANA GELDİ", "error");
+                      });
+                  }}
+                >
+                  Kaydet
+                </Button>
               </Grid>
             </Grid>
           </CardContent>

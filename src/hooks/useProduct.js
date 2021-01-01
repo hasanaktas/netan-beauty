@@ -36,46 +36,10 @@ const useProduct = (productId) => {
           en: "",
         },
       },
-      {
-        icon: 1,
-        title: {
-          tr: "",
-          en: "",
-        },
-      },
-      {
-        icon: 2,
-        title: {
-          tr: "",
-          en: "",
-        },
-      },
     ],
     boxes: [
       {
-        icon: 2,
-        title: {
-          tr: "",
-          en: "",
-        },
-        subTitle: {
-          tr: "",
-          en: "",
-        },
-      },
-      {
-        icon: 2,
-        title: {
-          tr: "",
-          en: "",
-        },
-        subTitle: {
-          tr: "",
-          en: "",
-        },
-      },
-      {
-        icon: 2,
+        icon: 0,
         title: {
           tr: "",
           en: "",
@@ -110,11 +74,24 @@ const useProduct = (productId) => {
     }
   }, []);
 
+  const save = () => {
+    if (productId === "new") {
+      return null;
+    } else {
+      return firebase
+        .firestore()
+        .collection("products")
+        .doc(productId)
+        .set(product);
+    }
+  };
+
   return {
     error,
     loading,
     product,
     setProduct,
+    save,
   };
 };
 
