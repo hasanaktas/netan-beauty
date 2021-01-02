@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
-import { Typography, Button } from "@material-ui/core";
-import { Page, Logo } from "components";
-import { useLocale, useProducts } from "hooks";
-const HomePage = () => {
-  const { products } = useProducts();
-
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
-  const [locale, setLocale] = useLocale();
+import React from "react";
+import { Page } from "components";
+import { Section1, Section2, Section3, Section4, Slider } from "./components";
+const Home = () => {
   return (
-    <Page title="Netan Beauty">
-      <Logo />
-      <Button onClick={() => setLocale("tr")}>Turkish</Button>
-      <Button onClick={() => setLocale("en")}>English</Button>
-      <Typography>{locale.home}</Typography>
+    <Page title="Anasayfa">
+      <Slider />
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4/>
     </Page>
   );
 };
 
-export default HomePage;
+export default Home;

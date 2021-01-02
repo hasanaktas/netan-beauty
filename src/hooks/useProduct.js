@@ -70,6 +70,19 @@ const useProduct = (productId) => {
         },
       ],
     },
+    easyToUse: [
+      {
+        title: {
+          tr: "",
+          en: "",
+        },
+        subTitle: {
+          tr: "",
+          en: "",
+        },
+        images: [],
+      },
+    ],
   });
 
   useEffect(() => {

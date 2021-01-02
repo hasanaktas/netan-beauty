@@ -1,8 +1,8 @@
-import { createMuiTheme, colors } from "@material-ui/core";
+import { createMuiTheme, colors, responsiveFontSizes } from "@material-ui/core";
 import shadows from "./shadows";
 import typography from "./typography";
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     background: {
       dark: "#F4F6F8",
@@ -10,10 +10,10 @@ const theme = createMuiTheme({
       paper: colors.common.white,
     },
     primary: {
-      main: colors.indigo[500],
+      main: "#990099",
     },
     secondary: {
-      main: colors.indigo[500],
+      main: "#F7DCF2",
     },
     text: {
       primary: colors.blueGrey[900],
@@ -24,4 +24,5 @@ const theme = createMuiTheme({
   typography,
 });
 
+theme = responsiveFontSizes(theme);
 export default theme;

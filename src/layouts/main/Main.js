@@ -1,16 +1,33 @@
 import React from "react";
-import { Button, Container, Box } from "@material-ui/core";
 import { Outlet } from "react-router-dom";
-const MainLayout = () => {
+import { Footer, TopBar } from "./components";
+import { Box, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+  },
+  main: {
+    flexGrow: 1,
+    paddingTop: 55,
+  },
+}));
+
+const MainLayout = (props) => {
+  const classes = useStyles();
+
   return (
-    <Container>
-      <Box display="flex" flexDirection="column">
-        <Button>MainLayout</Button>
-        <Box>
-          <Outlet />
-        </Box>
+    <div className={classes.root}>
+      <TopBar />
+      <Box className={classes.main}>
+        <Outlet />
       </Box>
-    </Container>
+
+      <Footer />
+    </div>
   );
 };
 

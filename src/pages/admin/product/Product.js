@@ -729,10 +729,9 @@ const AdminProductPage = () => {
                     onClick={() =>
                       setProduct({
                         ...product,
-                        boxes: [
-                          ...product.boxes,
+                        easyToUse: [
+                          ...product.easyToUse,
                           {
-                            icon: 0,
                             title: {
                               tr: "",
                               en: "",
@@ -741,6 +740,7 @@ const AdminProductPage = () => {
                               tr: "",
                               en: "",
                             },
+                            images: [],
                           },
                         ],
                       })
@@ -759,6 +759,36 @@ const AdminProductPage = () => {
                       </AccordionSummary>
                       <AccordionDetails>
                         <Grid container spacing={3}>
+                          <Grid item xs={12}>
+                            <Box display="flex" alignItems="center">
+                              <ImagePicker
+                                length={1}
+                                order={"0-easytouse"}
+                                images={item.images}
+                                removeImage={(selected) => {
+                                  const newEasyToUse = [...product.easyToUse];
+                                  newEasyToUse[index].images.splice(
+                                    selected,
+                                    1
+                                  );
+                                  setProduct({
+                                    ...product,
+                                    easyToUse: [...newEasyToUse],
+                                  });
+                                  snack("Silme Başarılı", "success");
+                                }}
+                                setSrc={(e, order) => {
+                                  const newEasyToUse = [...product.easyToUse];
+                                  newEasyToUse[index].images.push(e);
+                                  setProduct({
+                                    ...product,
+                                    easyToUse: [...newEasyToUse],
+                                  });
+                                  snack("Yükleme Başarılı", "success");
+                                }}
+                              />
+                            </Box>
+                          </Grid>
                           <Grid item xs={12} md={6}>
                             <TextField
                               fullWidth
@@ -840,6 +870,7 @@ const AdminProductPage = () => {
                     save()
                       .then(() => {
                         snack("KAYIT BAŞARILI", "success");
+                        navigate(`/admin/products`);
                       })
                       .catch(() => {
                         snack("HATA MEYDANA GELDİ", "error");
