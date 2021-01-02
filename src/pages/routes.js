@@ -6,6 +6,7 @@ import HomePage from "./home";
 import AboutPage from "./about";
 import ContactPage from "./contact";
 import ProductPage from "./product";
+import ProductsPage from "./products";
 import NotFoundPage from "./notFound";
 import LoginPage from "./login";
 
@@ -23,6 +24,7 @@ const routes = (isLoggedIn) => [
       { path: "/", element: <HomePage /> },
       { path: "/iletisim", element: <ContactPage /> },
       { path: "/hakkimizda", element: <AboutPage /> },
+      { path: "/urunler", element: <ProductsPage /> },
       { path: "/urun/:productId", element: <ProductPage /> },
       { path: "404", element: <NotFoundPage /> },
       { path: "*", element: <Navigate to="/404" /> },

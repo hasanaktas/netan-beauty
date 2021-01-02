@@ -60,7 +60,9 @@ export default function ButtonAppBar() {
             </Typography>
           </Box>
           <Hidden xsDown>
-            <Button color="inherit">ÜRÜNLER</Button>
+            <Button color="inherit" onClick={() => navigate("/urunler")}>
+              ÜRÜNLER
+            </Button>
             <Button color="inherit" onClick={() => navigate("/hakkimizda")}>
               HAKKIMIZDA
             </Button>
