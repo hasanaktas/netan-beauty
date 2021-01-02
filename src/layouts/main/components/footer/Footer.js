@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Typography,
   makeStyles,
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles();
-  const [values, setValues] = useState({
+  const [values] = useState({
     phone: "0544",
     fax: "622",
     email: "33",

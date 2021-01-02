@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useRoutes, useLocation } from "react-router-dom";
 import routes from "./routes";
 import { useAuth } from "hooks";

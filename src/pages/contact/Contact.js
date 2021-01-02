@@ -54,7 +54,7 @@ const ContactPage = () => {
 
             <Grid item xs={12}>
               <Box className={classes.contactCard}>
-                <IconButton size="large" className={classes.iconButton}>
+                <IconButton className={classes.iconButton}>
                   <PhoneIcon className={classes.icon} />
                 </IconButton>
 
@@ -66,7 +66,7 @@ const ContactPage = () => {
             </Grid>
             <Grid item xs={12}>
               <Box className={classes.contactCard}>
-                <IconButton size="large" className={classes.iconButton}>
+                <IconButton className={classes.iconButton}>
                   <PrinterIcon className={classes.icon} />
                 </IconButton>
 
@@ -78,7 +78,7 @@ const ContactPage = () => {
             </Grid>
             <Grid item xs={12}>
               <Box className={classes.contactCard}>
-                <IconButton size="large" className={classes.iconButton}>
+                <IconButton className={classes.iconButton}>
                   <MailIcon className={classes.icon} />
                 </IconButton>
                 <Box>
@@ -89,7 +89,7 @@ const ContactPage = () => {
             </Grid>
             <Grid item xs={12}>
               <Box className={classes.contactCard}>
-                <IconButton size="large" className={classes.iconButton}>
+                <IconButton className={classes.iconButton}>
                   <MapPinIcon className={classes.icon} />
                 </IconButton>
 
@@ -116,8 +116,8 @@ const ContactPage = () => {
                 width={"100%"}
                 height={"500"}
                 title="My Daily Marathon Tracker"
-                frameborder={0}
-                tabindex={0}
+                frameBorder={0}
+                tabIndex={0}
                 style={{
                   position: "absolute",
                   top: 0,

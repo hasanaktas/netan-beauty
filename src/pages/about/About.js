@@ -55,9 +55,9 @@ const AboutPage = () => {
                   width="565"
                   height="345"
                   src="https://www.youtube.com/embed/IEI3OUxDyHQ"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                   style={{
                     position: "absolute",
                     top: 0,
