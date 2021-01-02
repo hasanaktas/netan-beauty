@@ -11,7 +11,7 @@ import {
   Button,
 } from "@material-ui/core";
 
-import AddIcon from "@material-ui/icons/Add";
+import AddIcon from "@material-ui/icons/AddAPhoto";
 import firebase from "firebase/app";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,8 +20,21 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     height: 100,
     margin: theme.spacing(1),
-  },
+    borderRadius: 10,
+    overflow: "hidden",
 
+    border: "2px solid rgb(240,240,240)",
+  },
+  iconButton: {
+    width: 100,
+    height: 100,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    margin: theme.spacing(1),
+    backgroundColor: "rgba(0,0,0,0.05)",
+  },
   imageSrc: {
     width: 100,
     height: 100,
@@ -106,7 +119,11 @@ const ImagePicker = (props) => {
               type="file"
             />
             <label htmlFor={`icon-button-file-${order}`}>
-              <IconButton variant="contained" component="span">
+              <IconButton
+                variant="contained"
+                component="span"
+                className={classes.iconButton}
+              >
                 <AddIcon />
               </IconButton>
             </label>

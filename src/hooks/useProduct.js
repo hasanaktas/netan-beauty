@@ -51,10 +51,24 @@ const useProduct = (productId) => {
       },
     ],
     promotion: {
+      images: [],
       title: {
         tr: "",
         en: "",
       },
+      properties: [
+        {
+          icon: 0,
+          title: {
+            tr: "",
+            en: "",
+          },
+          subTitle: {
+            tr: "",
+            en: "",
+          },
+        },
+      ],
     },
   });
 

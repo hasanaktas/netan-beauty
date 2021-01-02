@@ -534,20 +534,23 @@ const AdminProductPage = () => {
                     onClick={() =>
                       setProduct({
                         ...product,
-                        boxes: [
-                          ...product.boxes,
-                          {
-                            icon: 0,
-                            title: {
-                              tr: "",
-                              en: "",
+                        promotion: {
+                          ...product.promotion,
+                          properties: [
+                            ...product.promotion.properties,
+                            {
+                              icon: 0,
+                              title: {
+                                tr: "",
+                                en: "",
+                              },
+                              subTitle: {
+                                tr: "",
+                                en: "",
+                              },
                             },
-                            subTitle: {
-                              tr: "",
-                              en: "",
-                            },
-                          },
-                        ],
+                          ],
+                        },
                       })
                     }
                   >
@@ -560,6 +563,14 @@ const AdminProductPage = () => {
                   fullWidth
                   label={`Başlık - Türkçe`}
                   value={product.promotion.title.tr}
+                  onChange={(e) => {
+                    const newPromotion = { ...product.promotion };
+                    newPromotion.title.tr = e.target.value;
+                    setProduct({
+                      ...product,
+                      promotion: { ...newPromotion },
+                    });
+                  }}
                   variant="outlined"
                 />
               </Grid>
@@ -568,6 +579,14 @@ const AdminProductPage = () => {
                   fullWidth
                   label={`Başlık - İngilizce`}
                   value={product.promotion.title.en}
+                  onChange={(e) => {
+                    const newPromotion = { ...product.promotion };
+                    newPromotion.title.en = e.target.value;
+                    setProduct({
+                      ...product,
+                      promotion: { ...newPromotion },
+                    });
+                  }}
                   variant="outlined"
                 />
               </Grid>
@@ -595,6 +614,222 @@ const AdminProductPage = () => {
                     snack("Yükleme Başarılı", "success");
                   }}
                 />
+              </Grid>
+              <Grid item xs={12}>
+                {product.promotion.properties.map((item, index) => {
+                  return (
+                    <Accordion key={index}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography> Madde {index + 1}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Grid container spacing={3}>
+                          <Grid item xs={12}>
+                            <Box
+                              p={2}
+                              display="flex"
+                              width="100%"
+                              justifyContent="center"
+                            >
+                              <IconPicker
+                                selectedIcon={item.icon}
+                                setSelectedIcon={(e) => {
+                                  const newPromotion = { ...product.promotion };
+                                  newPromotion.properties[index].icon = e;
+                                  setProduct({
+                                    ...product,
+                                    promotion: { ...newPromotion },
+                                  });
+                                }}
+                              />
+                            </Box>
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Başlık - Türkçe`}
+                              value={item.title.tr}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newPromotion = { ...product.promotion };
+                                newPromotion.properties[index].title.tr =
+                                  e.target.value;
+                                setProduct({
+                                  ...product,
+                                  promotion: { ...newPromotion },
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Başlık - İngilizce`}
+                              value={item.title.en}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newPromotion = { ...product.promotion };
+                                newPromotion.properties[index].title.en =
+                                  e.target.value;
+                                setProduct({
+                                  ...product,
+                                  promotion: { ...newPromotion },
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Alt Başlık - Türkçe`}
+                              value={item.subTitle.tr}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newPromotion = { ...product.promotion };
+                                newPromotion.properties[index].subTitle.tr =
+                                  e.target.value;
+                                setProduct({
+                                  ...product,
+                                  promotion: { ...newPromotion },
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Alt Başlık - İngilizce`}
+                              value={item.subTitle.en}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newPromotion = { ...product.promotion };
+                                newPromotion.properties[index].subTitle.en =
+                                  e.target.value;
+                                setProduct({
+                                  ...product,
+                                  promotion: { ...newPromotion },
+                                });
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  );
+                })}
+              </Grid>
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
+              <Grid item xs={12}>
+                <Box display="flex" alignItems="center">
+                  <Typography variant="h6">Kolay Kullanım</Typography>
+                  <IconButton
+                    variant="contained"
+                    onClick={() =>
+                      setProduct({
+                        ...product,
+                        boxes: [
+                          ...product.boxes,
+                          {
+                            icon: 0,
+                            title: {
+                              tr: "",
+                              en: "",
+                            },
+                            subTitle: {
+                              tr: "",
+                              en: "",
+                            },
+                          },
+                        ],
+                      })
+                    }
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                {product.easyToUse.map((item, index) => {
+                  return (
+                    <Accordion key={index}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography> Madde {index + 1}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Grid container spacing={3}>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Başlık - Türkçe`}
+                              value={item.title.tr}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newEasyToUse = [...product.easyToUse];
+                                newEasyToUse[index].title.tr = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  easyToUse: [...newEasyToUse],
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Başlık - İngilizce`}
+                              value={item.title.en}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newEasyToUse = [...product.easyToUse];
+                                newEasyToUse[index].title.en = e.target.value;
+                                setProduct({
+                                  ...product,
+                                  easyToUse: [...newEasyToUse],
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Alt Başlık - Türkçe`}
+                              value={item.subTitle.tr}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newEasyToUse = [...product.easyToUse];
+                                newEasyToUse[index].subTitle.tr =
+                                  e.target.value;
+                                setProduct({
+                                  ...product,
+                                  easyToUse: [...newEasyToUse],
+                                });
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth
+                              label={`Alt Başlık - İngilizce`}
+                              value={item.subTitle.en}
+                              variant="outlined"
+                              onChange={(e) => {
+                                const newEasyToUse = [...product.easyToUse];
+                                newEasyToUse[index].subTitle.en =
+                                  e.target.value;
+                                setProduct({
+                                  ...product,
+                                  easyToUse: [...newEasyToUse],
+                                });
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  );
+                })}
               </Grid>
               <Grid item xs={12}>
                 <Button
