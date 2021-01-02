@@ -882,14 +882,18 @@ const AdminProductPage = () => {
                   variant="contained"
                   color="primary"
                   onClick={() => {
-                    save()
-                      .then(() => {
-                        snack("KAYIT BAŞARILI", "success");
-                        navigate(`/admin/products`);
-                      })
-                      .catch(() => {
-                        snack("HATA MEYDANA GELDİ", "error");
-                      });
+                    if (product.seoUrl === "") {
+                      snack("SEO URL BOS OLAMAZ", "error");
+                    } else {
+                      save()
+                        .then(() => {
+                          snack("KAYIT BAŞARILI", "success");
+                          navigate(`/admin/products`);
+                        })
+                        .catch(() => {
+                          snack("HATA MEYDANA GELDİ", "error");
+                        });
+                    }
                   }}
                 >
                   Kaydet
