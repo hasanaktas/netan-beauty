@@ -43,7 +43,7 @@ const ProductsPage = () => {
           {products.map((item, index) => (
             <Grid key={index} item xs={12} sm={6} md={4}>
               <Card>
-                <CardActionArea onClick={() => goProduct(item.id)}>
+                <CardActionArea onClick={() => goProduct(item.seoUrl)}>
                   <img
                     alt="Netan"
                     src={item.options[0].images[0]}

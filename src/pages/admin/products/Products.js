@@ -48,7 +48,7 @@ const AdminProductPage = () => {
                   <ListItem
                     key={index}
                     button
-                    onClick={() => navigate(`/admin/product/${item.id}`)}
+                    onClick={() => navigate(`/admin/product/${item.seoUrl}`)}
                   >
                     <ListItemText primary={item.name.tr} />
                     <EditIcon />

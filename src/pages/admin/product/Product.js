@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useProduct, useSnack } from "hooks";
 import {
@@ -41,6 +41,7 @@ const AdminProductPage = () => {
   if (error) {
     return <div>Bir Hata Meydana Geldi</div>;
   }
+
   return (
     <Page title="Netan Beauty">
       <Container>
@@ -165,6 +166,20 @@ const AdminProductPage = () => {
                   value={product.price.pseudo}
                   variant="outlined"
                   type="number"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Seo URL "
+                  onChange={(e) =>
+                    setProduct({
+                      ...product,
+                      seoUrl: e.target.value,
+                    })
+                  }
+                  value={product.seoUrl}
+                  variant="outlined"
                 />
               </Grid>
               <Divider />

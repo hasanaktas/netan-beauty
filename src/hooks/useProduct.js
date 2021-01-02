@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import firebase from "firebase/app";
 
-const useProduct = (productId) => {
+const useProduct = (seoUrl, productId) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({
+    seoUrl: "",
     name: {
       tr: "",
       en: "",
@@ -86,22 +87,23 @@ const useProduct = (productId) => {
   });
 
   useEffect(() => {
-    if (productId === "new") {
+    if (seoUrl === "new") {
       setLoading(false);
     } else {
       firebase
         .firestore()
         .collection("products")
-        .doc(productId)
+        .where("seoUrl", "==", seoUrl)
         .get()
-        .then((doc) => {
-          if (doc.exists) {
-            setProduct({ ...doc.data(), id: doc.id });
-          } else {
-            console.log("No such document!");
-          }
-
+        .then((snapshot) => {
+          const products = [];
+          snapshot.forEach((doc) => {
+            console.warn(doc.data());
+            products.push({ ...doc.data(), id: doc.id });
+          });
           setLoading(false);
+
+          setProduct(products[0]);
         })
         .catch((err) => setError(err));
     }
@@ -109,19 +111,19 @@ const useProduct = (productId) => {
   }, []);
 
   const save = async () => {
-    if (productId === "new") {
+    if (seoUrl === "new") {
       return firebase.firestore().collection("products").add(product);
     } else {
       return firebase
         .firestore()
         .collection("products")
-        .doc(productId)
+        .doc(product.id)
         .set(product);
     }
   };
 
-  const remove = async (id) => {
-    return firebase.firestore().collection("products").doc(id).delete();
+  const remove = async () => {
+    return firebase.firestore().collection("products").doc(product.id).delete();
   };
 
   return {
