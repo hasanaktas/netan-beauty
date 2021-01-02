@@ -5,6 +5,8 @@ import {
   Container,
   Grid,
   Button,
+  Paper,
+  ButtonBase,
   Box,
   Divider,
   Chip,
@@ -14,6 +16,7 @@ import { useProduct, useLocale } from "hooks";
 import { Page } from "components";
 import { icons } from "configs";
 import { ImageSlider } from "./components";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(4),
@@ -23,6 +26,21 @@ const useStyles = makeStyles((theme) => ({
   pseudoPrice: {
     textDecoration: "line-through",
     marginRight: theme.spacing(1),
+  },
+  marketPlaceButton: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: theme.spacing(1),
+    borderRadius: 10,
+  },
+  marketPlace: {
+    width: 100,
+    height: "auto",
+  },
+  box: {
+    height: "100%",
+    borderRadius: 10,
   },
 }));
 
@@ -109,10 +127,112 @@ const ProductPage = () => {
               </Box>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6" color="primary">
-                {locale.saleChannels}
-              </Typography>
+              <Box display="flex" flexWrap="wrap">
+                {product.options[selectedVariant].saleChannel.map(
+                  (item, index) => {
+                    if (item.shop === "hepsiburada" && item.link.length > 0) {
+                      return (
+                        <ButtonBase
+                          key={index}
+                          onClick={() =>
+                            window.open(`https://${item.link}`, "_blank")
+                          }
+                          className={classes.marketPlaceButton}
+                        >
+                          <img
+                            alt="hepsiburada"
+                            src="/static/images/marketplace/hepsiburada.png"
+                            className={classes.marketPlace}
+                          />
+                        </ButtonBase>
+                      );
+                    }
+                    if (item.shop === "trendyol" && item.link.length > 0) {
+                      return (
+                        <ButtonBase
+                          key={index}
+                          onClick={() =>
+                            window.open(`https://${item.link}`, "_blank")
+                          }
+                          className={classes.marketPlaceButton}
+                        >
+                          <img
+                            alt="trendyol"
+                            src="/static/images/marketplace/trendyol.png"
+                            className={classes.marketPlace}
+                          />
+                        </ButtonBase>
+                      );
+                    }
+                    if (item.shop === "n11" && item.link.length > 0) {
+                      return (
+                        <ButtonBase
+                          key={index}
+                          onClick={() =>
+                            window.open(`https://${item.link}`, "_blank")
+                          }
+                          className={classes.marketPlaceButton}
+                        >
+                          <img
+                            alt="n11"
+                            src="/static/images/marketplace/n11.png"
+                            className={classes.marketPlace}
+                          />
+                        </ButtonBase>
+                      );
+                    }
+                  }
+                )}
+              </Box>
             </Grid>
+            <Grid item xs={12}>
+              <Button
+                startIcon={<ArrowForwardIosIcon />}
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                AVANTAJLI FİYAT İÇİN İLETİŞİME GEÇİN
+              </Button>
+            </Grid>
+          </Grid>
+          <Grid item container xs={12} spacing={3} justify="center">
+            {product.boxes.map((item, index) => {
+              const Icon = icons[item.icon];
+              return (
+                <Grid key={index} item xs={12} md={4}>
+                  <Paper className={classes.box}>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      alignItems="center"
+                      p={2}
+                      height="100%"
+                    >
+                      <Box clone mb={2}>
+                        <Icon />
+                      </Box>
+
+                      <Typography
+                        align="center"
+                        variant="button"
+                        style={{ marginBottom: 10 }}
+                      >
+                        {locale.language === "tr"
+                          ? item.title.tr
+                          : item.title.en}
+                      </Typography>
+
+                      <Typography align="center" variant="body2">
+                        {locale.language === "tr"
+                          ? item.subTitle.tr
+                          : item.subTitle.en}
+                      </Typography>
+                    </Box>
+                  </Paper>
+                </Grid>
+              );
+            })}
           </Grid>
         </Grid>
       </Container>
