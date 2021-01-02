@@ -11,6 +11,19 @@ import ChatIcon from "@material-ui/icons/Chat";
 import ComputerIcon from "@material-ui/icons/Computer";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+import FilterTiltShiftIcon from "@material-ui/icons/FilterTiltShift";
+import EvStationIcon from "@material-ui/icons/EvStation";
+import SettingsPowerIcon from "@material-ui/icons/SettingsPower";
+import RssFeedIcon from "@material-ui/icons/RssFeed";
+import BatteryChargingFullIcon from "@material-ui/icons/BatteryChargingFull";
+import PanoramaVerticalIcon from "@material-ui/icons/PanoramaVertical";
+import SettingsEthernetIcon from "@material-ui/icons/SettingsEthernet";
+
+import FlashAutoOutlinedIcon from "@material-ui/icons/FlashAutoOutlined";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import LocalShippingIcon from "@material-ui/icons/LocalShipping";
+import VerifiedUserOutlinedIcon from "@material-ui/icons/VerifiedUserOutlined";
+
 const icons = [
   AcUnitIcon,
   AccessAlarmIcon,
@@ -24,6 +37,19 @@ const icons = [
   ChatIcon,
   ComputerIcon,
   DeleteIcon,
+
+  EvStationIcon,
+  SettingsPowerIcon,
+  RssFeedIcon,
+  BatteryChargingFullIcon,
+  FilterTiltShiftIcon,
+  PanoramaVerticalIcon,
+  SettingsEthernetIcon,
+
+  FlashAutoOutlinedIcon,
+  CheckCircleOutlineIcon,
+  LocalShippingIcon,
+  VerifiedUserOutlinedIcon,
 ];
 
 export default icons;
