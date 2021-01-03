@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useProduct } from "hooks";
-import { Page, Section } from "components";
+import { Page, Section, Loading } from "components";
 import {
   MainSection,
   BoxesSection,
@@ -14,7 +14,7 @@ const ProductPage = () => {
   const { error, loading, product } = useProduct(productId);
 
   if (loading) {
-    return <div>Yukleniyor</div>;
+    return <Loading />;
   }
   if (error) {
     return <div>Bir Hata Meydana Geldi</div>;

@@ -13,42 +13,52 @@ import {
   MapPin as MapPinIcon,
   Printer as PrinterIcon,
 } from "react-feather";
-
+import { Loading, Page, Section } from "components";
+import { useDetails, useLocale } from "hooks";
 const useStyles = makeStyles((theme) => ({
   contactCard: {
     display: "flex",
-    margin: theme.spacing(1),
+    marginTop: theme.spacing(4),
     alignItems: "center",
   },
   icon: {
     color: theme.palette.primary.main,
     marginRight: theme.spacing(0),
+
     alignItems: "center",
     justifyContent: "center",
   },
   iconButton: {
     backgroundColor: "#FF64CB",
-    margin: theme.spacing(1),
+    marginRight: theme.spacing(2),
   },
 }));
 
 const ContactPage = () => {
   const classes = useStyles();
+  const [locale] = useLocale();
+  const { error, loading, details } = useDetails();
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <div>Bir Hata Meydana Geldi</div>;
+  }
+
   return (
-    <Box py={5} bgcolor="white" paddingX={1} height="100%" minHeight={400}>
-      <Container>
-        <Grid
-          container
-          spacing={3}
-          style={{ marginTop: "40px", marginBottom: "30px" }}
-        >
+    <Page title={locale.pages.contact}>
+      <Section alternative>
+        <Grid container spacing={3}>
           <Grid item container sm={12} md={6}>
             <Grid item xs={12}>
               <Typography variant="h4" gutterBottom>
-                BİZE ULAŞIN
+                {locale.pages.contact}
               </Typography>
               <Box>
-                <Typography>Hedefimiz olabildiğince yardımcı olmak.</Typography>
+                <Typography>
+                  {details.contact.title[locale.language]}
+                </Typography>
               </Box>
             </Grid>
 
@@ -59,8 +69,10 @@ const ContactPage = () => {
                 </IconButton>
 
                 <Box>
-                  <Typography variant="subtitle1">Telefon</Typography>
-                  <Typography>+90 312 442 23 27</Typography>
+                  <Typography variant="subtitle1">
+                    {locale.contact.phone}
+                  </Typography>
+                  <Typography>{details.contact.phone}</Typography>
                 </Box>
               </Box>
             </Grid>
@@ -71,8 +83,10 @@ const ContactPage = () => {
                 </IconButton>
 
                 <Box>
-                  <Typography variant="subtitle1">Fax</Typography>
-                  <Typography>+90 312 442 23 51</Typography>
+                  <Typography variant="subtitle1">
+                    {locale.contact.fax}
+                  </Typography>
+                  <Typography>{details.contact.fax}</Typography>
                 </Box>
               </Box>
             </Grid>
@@ -82,8 +96,10 @@ const ContactPage = () => {
                   <MailIcon className={classes.icon} />
                 </IconButton>
                 <Box>
-                  <Typography variant="subtitle1">E-Posta</Typography>
-                  <Typography>netan@netan.com.tr</Typography>
+                  <Typography variant="subtitle1">
+                    {locale.contact.email}
+                  </Typography>
+                  <Typography>{details.contact.email}</Typography>
                 </Box>
               </Box>
             </Grid>
@@ -94,10 +110,11 @@ const ContactPage = () => {
                 </IconButton>
 
                 <Box>
-                  <Typography variant="subtitle1">Adres</Typography>
+                  <Typography variant="subtitle1">
+                    {locale.contact.adress}
+                  </Typography>
                   <Typography>
-                    Maltepe Mah. Gazi Mustafa Kemal Bulvarı No:47/13- Çankaya -
-                    Ankara / TÜRKİYE
+                    {details.contact.adress[locale.language]}
                   </Typography>
                 </Box>
               </Box>
@@ -129,8 +146,8 @@ const ContactPage = () => {
             </div>
           </Grid>
         </Grid>
-      </Container>
-    </Box>
+      </Section>
+    </Page>
   );
 };
 

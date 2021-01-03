@@ -43,6 +43,12 @@ const locale = {
     darkBrown: "dark brown",
     black: "black",
   },
+  contact: {
+    phone: "Phone",
+    fax: "Fax",
+    email: "Email",
+    adress: "Adress",
+  },
 };
 
 export default locale;

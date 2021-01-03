@@ -14,8 +14,10 @@ import InputIcon from "@material-ui/icons/Input";
 import { Logo } from "components";
 import { signOut } from "actions";
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles((theme) => ({
+  root: {
+    boxShadow: "0px 1px 10px -6px rgba(163,163,163,1)",
+  },
   avatar: {
     width: 60,
     height: 60,
@@ -27,9 +29,6 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
   return (
     <AppBar className={clsx(classes.root, className)} elevation={0} {...rest}>
       <Toolbar>
-        <RouterLink to="/">
-          <Logo />
-        </RouterLink>
         <Box flexGrow={1} />
 
         <IconButton color="inherit" onClick={signOut}>

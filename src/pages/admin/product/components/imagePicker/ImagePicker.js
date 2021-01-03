@@ -79,7 +79,6 @@ const ImagePicker = (props) => {
           .getDownloadURL()
           .then((url) => {
             setSrc(url, order);
-            console.log(url);
           });
       }
     );

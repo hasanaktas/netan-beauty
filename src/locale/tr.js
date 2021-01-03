@@ -44,6 +44,12 @@ const locale = {
     darkBrown: "koyu kahverengi",
     black: "siyah",
   },
+  contact: {
+    phone: "Telefon",
+    fax: "Fax",
+    email: "E-posta",
+    adress: "Adres",
+  },
 };
 
 export default locale;

@@ -14,7 +14,6 @@ const useProducts = () => {
       .then((snapshot) => {
         const products = [];
         snapshot.forEach((doc) => {
-          console.warn(doc.data());
           products.push({ ...doc.data(), id: doc.id });
         });
         setLoading(false);

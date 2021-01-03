@@ -1,13 +1,16 @@
 import React from "react";
+import { Typography } from "@material-ui/core";
 
-const Logo = (props) => {
+const Logo = () => {
   return (
-    <img
-      alt="Logo"
-      src="static/images/marketplace/hepsiburada.png"
-      style={{ height: 40, width: "auto" }}
-      {...props}
-    />
+    <Typography
+      variant="h6"
+      color="primary"
+      align="left"
+      style={{ cursor: "pointer" }}
+    >
+      Netan Beauty
+    </Typography>
   );
 };
 

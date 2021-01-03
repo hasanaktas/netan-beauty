@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     cursor: "pointer",
-    alignSelf: "flex-start",
   },
 }));
 
@@ -74,7 +73,7 @@ export default function ButtonAppBar() {
               <MenuIcon />
             </IconButton>
           </Hidden>
-          <Box onClick={() => navigate("/")} flex={1} display="flex">
+          <Box onClick={() => navigate("/")}>
             <Typography
               variant="h6"
               color="primary"
@@ -84,7 +83,7 @@ export default function ButtonAppBar() {
               Netan Beauty
             </Typography>
           </Box>
-
+          <Box flex={1} />
           <Hidden xsDown>
             <Button color="inherit" onClick={() => navigate("/urunler")}>
               {locale.pages.products}

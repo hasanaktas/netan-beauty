@@ -3,7 +3,6 @@ import {
   Typography,
   Grid,
   makeStyles,
-  Container,
   Card,
   CardActionArea,
   CardActions,
@@ -11,7 +10,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { Page, Section } from "components";
+import { Page, Section, Loading } from "components";
 import { useProducts, useLocale } from "hooks";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,14 +24,22 @@ const useStyles = makeStyles((theme) => ({
 const ProductsPage = () => {
   const classes = useStyles();
   const [locale] = useLocale();
-  const { products } = useProducts();
+  const { error, loading, products } = useProducts();
   let navigate = useNavigate();
 
   const goProduct = (id) => {
     navigate(`/urun/${id}`);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <div>Bir Hata Meydana Geldi</div>;
+  }
+
   return (
-    <Page title="Ürünler">
+    <Page title={locale.pages.products}>
       <Section alternative>
         <Grid container spacing={3} justify="center">
           {products.map((item, index) => (
