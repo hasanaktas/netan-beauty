@@ -12,7 +12,7 @@ import {
   MapPin as MapPinIcon,
   Printer as PrinterIcon,
 } from "react-feather";
-import { Loading, Page, Section } from "components";
+import { Page, Section } from "components";
 import { useLocale, useFirebase } from "hooks";
 const useStyles = makeStyles((theme) => ({
   contactCard: {

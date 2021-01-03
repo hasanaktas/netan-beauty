@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useProduct, useFirebase } from "hooks";
-import { Page, Section, Loading } from "components";
+import { useFirebase } from "hooks";
+import { Page, Section } from "components";
 import {
   MainSection,
   BoxesSection,

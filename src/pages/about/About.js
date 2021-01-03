@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Box, Typography } from "@material-ui/core";
-import { Page, Section, Loading } from "components";
+import { Page, Section } from "components";
 import { useLocale, useFirebase } from "hooks";
 const AboutPage = () => {
   const [locale] = useLocale();

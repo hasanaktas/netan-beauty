@@ -5,7 +5,7 @@ import { Page } from "components";
 const NotFoundPage = () => {
   return (
     <Page title="Not Found">
-      <Typography>NotFoundPage</Typography>
+      <Typography>SAYFA BULUNAMADI</Typography>
     </Page>
   );
 };

@@ -10,7 +10,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { Page, Section, Loading } from "components";
+import { Page, Section } from "components";
 import { useLocale, useFirebase } from "hooks";
 
 const useStyles = makeStyles((theme) => ({
