@@ -64,7 +64,7 @@ const ProductsPage = () => {
                   <Button
                     size="small"
                     color="primary"
-                    onClick={() => goProduct(item.id)}
+                    onClick={() => goProduct(item.seoUrl)}
                   >
                     {locale.goProduct}
                   </Button>
