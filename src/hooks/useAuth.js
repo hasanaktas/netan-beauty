@@ -7,8 +7,8 @@ const useAuth = () => {
 
   function onChange(user) {
     if (user) {
-      setInitializing(false);
       setUser(user);
+      setInitializing(false);
     } else {
       setInitializing(false);
       setUser(null);
