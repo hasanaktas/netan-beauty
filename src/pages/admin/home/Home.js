@@ -184,6 +184,33 @@ const AdminHomePage = () => {
             <Grid item xs={12}>
               <Box display="flex" alignItems="center">
                 <Typography variant="h6">Bölümler</Typography>
+                <IconButton
+                  variant="contained"
+                  onClick={() =>
+                    setDetails({
+                      ...details,
+                      home: {
+                        ...details.home,
+                        sections: [
+                          ...details.home.sections,
+                          {
+                            title: {
+                              tr: "",
+                              en: "",
+                            },
+                            subTitle: {
+                              tr: "",
+                              en: "",
+                            },
+                            images: [],
+                          },
+                        ],
+                      },
+                    })
+                  }
+                >
+                  <AddIcon />
+                </IconButton>
               </Box>
             </Grid>
             <Grid item xs={12}>
@@ -275,6 +302,23 @@ const AdminHomePage = () => {
                             variant="outlined"
                           />
                         </Grid>
+                        {index !== 0 && (
+                          <Grid item xs={12}>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              style={{ backgroundColor: "red" }}
+                              onClick={() => {
+                                const newDetails = { ...details };
+                                newDetails.home.sections.splice(index, 1);
+                                setDetails(newDetails);
+                                snack("Silme Başarılı", "success");
+                              }}
+                            >
+                              SİL
+                            </Button>
+                          </Grid>
+                        )}
                       </Grid>
                     </AccordionDetails>
                   </Accordion>

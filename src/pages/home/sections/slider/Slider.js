@@ -11,6 +11,8 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { ArrowLeft, ArrowRight } from "@material-ui/icons";
 import clsx from "clsx";
+import { useFirebase, useLocale } from "hooks";
+
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles((theme) => ({
@@ -112,18 +114,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const slides = [
-  {
-    image:
-      "https://www.triabeauty.com/triawebstore2/images/2020/us/HRLP/dove/hrl_precision_1.jpg",
-  },
-  {
-    image:
-      "https://www.triabeauty.com/triawebstore2/images/2020/us/LHR/Hero/fuchsia/hrl-4x-deluxe-kit-fuchsia-3.jpg",
-  },
-];
-
 const SectionSlider = (props) => {
+  const { details } = useFirebase();
+  const slides = details.home.slider;
+  const [locale] = useLocale();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const handleStepChange = (step) => {
@@ -170,10 +164,10 @@ const SectionSlider = (props) => {
                       flexDirection="column"
                     >
                       <Typography variant="h2" align="center">
-                        Netan Beauty
+                        {item.title[locale.language]}
                       </Typography>
                       <Typography variant="h6" align="center">
-                        Test Yazisi Test Yazisi Test Yazisi
+                        {item.subTitle[locale.language]}
                       </Typography>
                     </Box>
                   </Grid>
@@ -189,7 +183,7 @@ const SectionSlider = (props) => {
                       <img
                         alt="tria"
                         style={{ width: "75%", height: "auto" }}
-                        src={item.image}
+                        src={item.images[0]}
                       />
                     </Box>
                   </Grid>

@@ -24,9 +24,6 @@ const useStyles = makeStyles((theme) => ({
   },
   marketplace: {
     width: 100,
-    marginLeft: 20,
-    marginBottom: 20,
-    marginRight: 20,
     height: "auto",
   },
   contactText: {
@@ -39,6 +36,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 20,
     marginBottom: 20,
     marginRight: 20,
+  },
+  marketButton: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    padding: 20,
   },
 }));
 
@@ -53,7 +57,7 @@ const Footer = () => {
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h6" align="center" gutterBottom>
+            <Typography variant="h6" align="center">
               {locale.saleChannels}
             </Typography>
           </Grid>
@@ -65,6 +69,7 @@ const Footer = () => {
               alignItems="center"
             >
               <ButtonBase
+                className={classes.marketButton}
                 onClick={() =>
                   window.open(
                     `https://${details.contact.marketplace.hepsiburada}`,
@@ -79,6 +84,7 @@ const Footer = () => {
                 />
               </ButtonBase>
               <ButtonBase
+                className={classes.marketButton}
                 onClick={() =>
                   window.open(
                     `https://${details.contact.marketplace.trendyol}`,
@@ -93,6 +99,7 @@ const Footer = () => {
                 />
               </ButtonBase>
               <ButtonBase
+                className={classes.marketButton}
                 onClick={() =>
                   window.open(
                     `https://${details.contact.marketplace.n11}`,
