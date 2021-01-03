@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Footer, TopBar } from "./components";
 import { Box, makeStyles } from "@material-ui/core";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",

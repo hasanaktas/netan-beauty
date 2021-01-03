@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import firebase from "firebase/app";
+import { FirebaseProvider } from "contexts";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
@@ -13,8 +14,10 @@ if (!firebase.apps.length) {
 }
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <FirebaseProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </FirebaseProvider>,
   document.getElementById("root")
 );

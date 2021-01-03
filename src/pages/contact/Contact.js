@@ -13,7 +13,7 @@ import {
   Printer as PrinterIcon,
 } from "react-feather";
 import { Loading, Page, Section } from "components";
-import { useDetails, useLocale } from "hooks";
+import { useLocale, useFirebase } from "hooks";
 const useStyles = makeStyles((theme) => ({
   contactCard: {
     display: "flex",
@@ -36,14 +36,7 @@ const useStyles = makeStyles((theme) => ({
 const ContactPage = () => {
   const classes = useStyles();
   const [locale] = useLocale();
-  const { error, loading, details } = useDetails();
-
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <div>Bir Hata Meydana Geldi</div>;
-  }
+  const { details } = useFirebase();
 
   return (
     <Page title={locale.pages.contact}>

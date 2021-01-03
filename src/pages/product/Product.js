@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useProduct } from "hooks";
+import { useProduct, useFirebase } from "hooks";
 import { Page, Section, Loading } from "components";
 import {
   MainSection,
@@ -11,14 +11,9 @@ import {
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const { error, loading, product } = useProduct(productId);
+  const { products } = useFirebase();
+  const product = products.filter((item) => item.seoUrl === productId)[0];
 
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <div>Bir Hata Meydana Geldi</div>;
-  }
   return (
     <Page title="Product">
       <Section>

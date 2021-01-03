@@ -10,8 +10,8 @@ const useAuth = () => {
       setUser(user);
       setInitializing(false);
     } else {
-      setInitializing(false);
       setUser(null);
+      setInitializing(false);
     }
   }
 

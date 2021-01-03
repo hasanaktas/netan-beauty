@@ -4,28 +4,7 @@ import firebase from "firebase/app";
 const useDetails = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [details, setDetails] = useState({
-    contact: {
-      email: "",
-      phone: "",
-      fax: "",
-      marketplace: {
-        hepsiburada: "",
-        trendyol: "",
-        n11: "",
-      },
-      adress: {
-        tr: "",
-        en: "",
-      },
-      social: {
-        facebook: "",
-        twitter: "",
-        instagram: "",
-        youtube: "",
-      },
-    },
-  });
+  const [details, setDetails] = useState({});
 
   useEffect(() => {
     firebase
@@ -39,6 +18,7 @@ const useDetails = () => {
         });
 
         setDetails(details);
+
         setLoading(false);
       })
       .catch((err) => setError(err));

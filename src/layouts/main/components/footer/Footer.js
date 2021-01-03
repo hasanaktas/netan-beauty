@@ -15,7 +15,7 @@ import {
   Instagram as InstagramIcon,
   Youtube as YoutubeIcon,
 } from "react-feather";
-import { useLocale, useDetails } from "hooks";
+import { useLocale, useFirebase } from "hooks";
 const useStyles = makeStyles((theme) => ({
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const Footer = () => {
   const classes = useStyles();
 
-  const { details } = useDetails();
+  const { details } = useFirebase();
 
   const [locale] = useLocale();
   return (

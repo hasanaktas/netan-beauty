@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { Page, Section, Loading } from "components";
-import { useProducts, useLocale } from "hooks";
+import { useLocale, useFirebase } from "hooks";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -24,19 +24,12 @@ const useStyles = makeStyles((theme) => ({
 const ProductsPage = () => {
   const classes = useStyles();
   const [locale] = useLocale();
-  const { error, loading, products } = useProducts();
+  const { products } = useFirebase();
   let navigate = useNavigate();
 
   const goProduct = (id) => {
     navigate(`/urun/${id}`);
   };
-
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <div>Bir Hata Meydana Geldi</div>;
-  }
 
   return (
     <Page title={locale.pages.products}>

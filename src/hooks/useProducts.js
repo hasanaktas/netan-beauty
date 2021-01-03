@@ -16,8 +16,8 @@ const useProducts = () => {
         snapshot.forEach((doc) => {
           products.push({ ...doc.data(), id: doc.id });
         });
-        setLoading(false);
         setProducts(products);
+        setLoading(false);
       })
       .catch((err) => setError(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps

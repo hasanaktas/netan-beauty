@@ -1,17 +1,10 @@
 import React from "react";
 import { Grid, Box, Typography } from "@material-ui/core";
 import { Page, Section, Loading } from "components";
-import { useLocale, useDetails } from "hooks";
+import { useLocale, useFirebase } from "hooks";
 const AboutPage = () => {
   const [locale] = useLocale();
-  const { loading, error, details } = useDetails();
-
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <div>Bir Hata Meydana Geldi</div>;
-  }
+  const { details } = useFirebase();
 
   return (
     <Page title={locale.pages.about}>

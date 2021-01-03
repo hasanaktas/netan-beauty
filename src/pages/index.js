@@ -2,20 +2,19 @@ import { useLayoutEffect } from "react";
 import { useRoutes, useLocation } from "react-router-dom";
 import routes from "./routes";
 import { Loading } from "components";
-import { useAuth } from "hooks";
+import { useFirebase } from "hooks";
 const Pages = () => {
-  const { initializing, user } = useAuth();
+  const { loading, user } = useFirebase();
   const { pathname } = useLocation();
-
+  let routing = useRoutes(routes(user));
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  let routing = useRoutes(routes(user));
-
-  if (initializing) {
+  if (loading) {
     return <Loading />;
   }
+
   return routing;
 };
 
