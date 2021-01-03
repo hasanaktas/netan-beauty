@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Container, Box, Typography } from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 import { Page, Section, Loading } from "components";
 import { useLocale, useDetails } from "hooks";
 const AboutPage = () => {

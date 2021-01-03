@@ -4,7 +4,28 @@ import firebase from "firebase/app";
 const useDetails = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [details, setDetails] = useState({});
+  const [details, setDetails] = useState({
+    contact: {
+      email: "",
+      phone: "",
+      fax: "",
+      marketplace: {
+        hepsiburada: "",
+        trendyol: "",
+        n11: "",
+      },
+      adress: {
+        tr: "",
+        en: "",
+      },
+      social: {
+        facebook: "",
+        twitter: "",
+        instagram: "",
+        youtube: "",
+      },
+    },
+  });
 
   useEffect(() => {
     firebase
@@ -39,6 +60,13 @@ const useDetails = () => {
       .doc("about")
       .set(details.about);
   };
+  const saveHome = async () => {
+    return firebase
+      .firestore()
+      .collection("details")
+      .doc("home")
+      .set(details.home);
+  };
 
   return {
     error,
@@ -47,6 +75,7 @@ const useDetails = () => {
     setDetails,
     saveContact,
     saveAbout,
+    saveHome,
   };
 };
 

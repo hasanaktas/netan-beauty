@@ -15,6 +15,7 @@ import AdminAboutPage from "./admin/about";
 import AdminContactPage from "./admin/contact";
 import AdminProductsPage from "./admin/products";
 import AdminProductPage from "./admin/product";
+import AdminHomePage from "./admin/home";
 
 const routes = (isLoggedIn) => [
   {
@@ -34,7 +35,8 @@ const routes = (isLoggedIn) => [
     path: "/admin",
     element: isLoggedIn ? <AdminLayout /> : <Navigate to="/login" />,
     children: [
-      { path: "/", element: <Navigate to="/admin/about" /> },
+      { path: "/", element: <Navigate to="/admin/home" /> },
+      { path: "/home", element: <AdminHomePage /> },
       { path: "/about", element: <AdminAboutPage /> },
       { path: "/contact", element: <AdminContactPage /> },
       { path: "/products", element: <AdminProductsPage /> },

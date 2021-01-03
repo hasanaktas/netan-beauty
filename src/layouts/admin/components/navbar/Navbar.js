@@ -14,6 +14,7 @@ import {
   BarChart as BarChartIcon,
   ShoppingBag as ShoppingBagIcon,
   MapPin as MapPinIcon,
+  Home as HomeIcon,
 } from "react-feather";
 
 import NavItem from "./NavItem";
@@ -24,6 +25,11 @@ const user = {
 };
 
 const items = [
+  {
+    href: "/admin/home",
+    icon: HomeIcon,
+    title: "Anasayfa",
+  },
   {
     href: "/admin/about",
     icon: BarChartIcon,

@@ -1,9 +1,10 @@
 import { useLayoutEffect } from "react";
 import { useRoutes, useLocation } from "react-router-dom";
 import routes from "./routes";
+import { Loading } from "components";
 import { useAuth } from "hooks";
 const Pages = () => {
-  const { user } = useAuth();
+  const { initializing, user } = useAuth();
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
@@ -12,6 +13,9 @@ const Pages = () => {
 
   let routing = useRoutes(routes(user));
 
+  if (initializing) {
+    return <Loading />;
+  }
   return routing;
 };
 

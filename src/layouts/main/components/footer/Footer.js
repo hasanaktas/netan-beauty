@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Typography,
   makeStyles,
   Grid,
   Container,
   Box,
+  ButtonBase,
   IconButton,
 } from "@material-ui/core";
 
@@ -14,6 +15,7 @@ import {
   Instagram as InstagramIcon,
   Youtube as YoutubeIcon,
 } from "react-feather";
+import { useLocale, useDetails } from "hooks";
 const useStyles = makeStyles((theme) => ({
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
@@ -42,21 +44,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles();
-  const [values] = useState({
-    phone: "0544",
-    fax: "622",
-    email: "33",
-    adressTR: "23",
-    adressEN: "32",
-  });
 
+  const { details } = useDetails();
+
+  const [locale] = useLocale();
   return (
     <footer className={classes.footer}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="h6" align="center" gutterBottom>
-              SATIŞ KANALLARIMIZ
+              {locale.saleChannels}
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -66,21 +64,48 @@ const Footer = () => {
               justifyContent="center"
               alignItems="center"
             >
-              <img
-                alt="hepsiburada"
-                src="/static/images/marketplace/hepsiburada.png"
-                className={classes.marketplace}
-              />
-              <img
-                alt="trendyol"
-                src="/static/images/marketplace/trendyol.png"
-                className={classes.marketplace}
-              />
-              <img
-                alt="n11"
-                src="/static/images/marketplace/n11.png"
-                className={classes.marketplace}
-              />
+              <ButtonBase
+                onClick={() =>
+                  window.open(
+                    `https://${details.contact.marketplace.hepsiburada}`,
+                    "_blank"
+                  )
+                }
+              >
+                <img
+                  alt="hepsiburada"
+                  src="/static/images/marketplace/hepsiburada.png"
+                  className={classes.marketplace}
+                />
+              </ButtonBase>
+              <ButtonBase
+                onClick={() =>
+                  window.open(
+                    `https://${details.contact.marketplace.trendyol}`,
+                    "_blank"
+                  )
+                }
+              >
+                <img
+                  alt="trendyol"
+                  src="/static/images/marketplace/trendyol.png"
+                  className={classes.marketplace}
+                />
+              </ButtonBase>
+              <ButtonBase
+                onClick={() =>
+                  window.open(
+                    `https://${details.contact.marketplace.n11}`,
+                    "_blank"
+                  )
+                }
+              >
+                <img
+                  alt="n11"
+                  src="/static/images/marketplace/n11.png"
+                  className={classes.marketplace}
+                />
+              </ButtonBase>
             </Box>
           </Grid>
         </Grid>
@@ -97,7 +122,7 @@ const Footer = () => {
                 marginBottom={2}
               >
                 <Typography variant="subtitle1" className={classes.contactText}>
-                  BİZİ TAKİP EDİN
+                  {locale.followUs}
                 </Typography>
               </Box>
               <Box
@@ -106,16 +131,48 @@ const Footer = () => {
                 flexWrap="wrap"
                 padding={0}
               >
-                <IconButton className={classes.socialButton}>
+                <IconButton
+                  className={classes.socialButton}
+                  onClick={() =>
+                    window.open(
+                      `https://${details.contact.social.facebook}`,
+                      "_blank"
+                    )
+                  }
+                >
                   <FacebookIcon />
                 </IconButton>
-                <IconButton className={classes.socialButton}>
+                <IconButton
+                  className={classes.socialButton}
+                  onClick={() =>
+                    window.open(
+                      `https://${details.contact.social.instagram}`,
+                      "_blank"
+                    )
+                  }
+                >
                   <InstagramIcon />
                 </IconButton>
-                <IconButton className={classes.socialButton}>
+                <IconButton
+                  className={classes.socialButton}
+                  onClick={() =>
+                    window.open(
+                      `https://${details.contact.social.twitter}`,
+                      "_blank"
+                    )
+                  }
+                >
                   <TwitterIcon />
                 </IconButton>
-                <IconButton className={classes.socialButton}>
+                <IconButton
+                  className={classes.socialButton}
+                  onClick={() =>
+                    window.open(
+                      `https://${details.contact.social.youtube}`,
+                      "_blank"
+                    )
+                  }
+                >
                   <YoutubeIcon />
                 </IconButton>
               </Box>
@@ -128,19 +185,20 @@ const Footer = () => {
             <Grid item sm={6} xs={12}>
               <Box display="flex" flexDirection="column" padding={3}>
                 <Typography variant="subtitle1" className={classes.contactText}>
-                  İletişim
+                  {locale.pages.contact}
                 </Typography>
                 <Typography variant="subtitle2" className={classes.contactText}>
-                  Telefon : {values.phone}
+                  {locale.contact.phone} : {details.contact.phone}
                 </Typography>
                 <Typography variant="subtitle2" className={classes.contactText}>
-                  Fax : {values.fax}
+                  {locale.contact.fax} :{details.contact.fax}
                 </Typography>
                 <Typography variant="subtitle2" className={classes.contactText}>
-                  E-posta : {values.email}
+                  {locale.contact.email} : {details.contact.email}
                 </Typography>
                 <Typography variant="subtitle2" className={classes.contactText}>
-                  Adres : {values.adressTR}
+                  {locale.contact.adress} :{" "}
+                  {details.contact.adress[locale.language]}
                 </Typography>
               </Box>
             </Grid>

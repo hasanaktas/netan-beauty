@@ -178,6 +178,45 @@ const AdminContactPage = () => {
                 variant="outlined"
               />
             </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Hepsiburada Mağaza"
+                value={details.contact.marketplace.hepsiburada}
+                onChange={(e) => {
+                  const newDetails = { ...details };
+                  newDetails.contact.marketplace.hepsiburada = e.target.value;
+                  setDetails(newDetails);
+                }}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Trendyol Mağaza"
+                value={details.contact.marketplace.trendyol}
+                onChange={(e) => {
+                  const newDetails = { ...details };
+                  newDetails.contact.marketplace.trendyol = e.target.value;
+                  setDetails(newDetails);
+                }}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="N11 Mağaza"
+                value={details.contact.marketplace.n11}
+                onChange={(e) => {
+                  const newDetails = { ...details };
+                  newDetails.contact.marketplace.n11 = e.target.value;
+                  setDetails(newDetails);
+                }}
+                variant="outlined"
+              />
+            </Grid>
             <Grid item xs={12}>
               <Button
                 fullWidth

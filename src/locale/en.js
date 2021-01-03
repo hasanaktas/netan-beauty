@@ -49,6 +49,7 @@ const locale = {
     email: "Email",
     adress: "Adress",
   },
+  followUs: "FOLLOW US",
 };
 
 export default locale;

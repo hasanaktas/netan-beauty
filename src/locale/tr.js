@@ -9,7 +9,7 @@ const locale = {
   goProduct: "ÜRÜNE GİT",
   buy: "ÜRÜNÜ SATIN AL",
   greatePrice: "AVANTAJLI FİYAT İÇİN İLETİŞİME GEÇİN",
-  saleChannels: "SATIŞ KANALLARI",
+  saleChannels: "SATIŞ KANALLARIMIZ",
   canIUseThisProduct: "BU ÜRÜNÜ KULLANABİLİR MİYİM ?",
   canIUseThisProductSubTitle:
     "Lazerimiz melanini kökünden hedefleyerek kıl kökünü etkisiz hale getirir. Cihazımızın sizin için güvenli ve etkili olmasını sağlamak için lütfen tedavi etmek istediğiniz bölgenin cilt tonunu ve doğal tüy rengini seçin.",
@@ -50,6 +50,7 @@ const locale = {
     email: "E-posta",
     adress: "Adres",
   },
+  followUs: "BİZİ TAKİP EDİN",
 };
 
 export default locale;

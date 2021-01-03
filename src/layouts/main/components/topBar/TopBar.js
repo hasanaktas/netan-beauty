@@ -9,7 +9,11 @@ import {
   Button,
   IconButton,
   Container,
+  ListItemText,
   Menu,
+  Drawer,
+  List,
+  ListItem,
   MenuItem,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
@@ -32,13 +36,21 @@ const useStyles = makeStyles((theme) => ({
   title: {
     cursor: "pointer",
   },
+  drawer: {
+    width: 240,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: 240,
+  },
 }));
 
-export default function ButtonAppBar() {
+const Topbar = () => {
   const classes = useStyles();
   let navigate = useNavigate();
   const [locale, setLocale] = useLocale();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,75 +67,138 @@ export default function ButtonAppBar() {
     setAnchorEl(null);
   };
   return (
-    <AppBar
-      position="fixed"
-      color="default"
-      className={classes.root}
-      elevation={0}
-    >
-      <Container>
-        <Toolbar>
-          <Hidden smUp>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
+    <>
+      <AppBar
+        position="fixed"
+        color="default"
+        className={classes.root}
+        elevation={0}
+      >
+        <Container>
+          <Toolbar>
+            <Hidden smUp>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={() => setMobileMenuOpen(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+            <Box onClick={() => navigate("/")}>
+              <Typography
+                variant="h6"
+                color="primary"
+                align="left"
+                className={classes.title}
+              >
+                Netan Beauty
+              </Typography>
+            </Box>
+            <Box flex={1} />
+            <Hidden xsDown>
+              <Button color="inherit" onClick={() => navigate("/urunler")}>
+                {locale.pages.products}
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/hakkimizda")}>
+                {locale.pages.about}
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/iletisim")}>
+                {locale.pages.contact}
+              </Button>
+            </Hidden>
+            <Button
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+              startIcon={<TranslateIcon />}
+              endIcon={<ExpandMoreIcon />}
+              variant="text"
+              style={{ marginLeft: 20 }}
             >
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
-          <Box onClick={() => navigate("/")}>
-            <Typography
-              variant="h6"
-              color="primary"
-              align="left"
-              className={classes.title}
+              {locale.languageLong}
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
             >
-              Netan Beauty
-            </Typography>
-          </Box>
-          <Box flex={1} />
-          <Hidden xsDown>
-            <Button color="inherit" onClick={() => navigate("/urunler")}>
-              {locale.pages.products}
-            </Button>
-            <Button color="inherit" onClick={() => navigate("/hakkimizda")}>
-              {locale.pages.about}
-            </Button>
-            <Button color="inherit" onClick={() => navigate("/iletisim")}>
-              {locale.pages.contact}
-            </Button>
-          </Hidden>
-          <Button
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-            startIcon={<TranslateIcon />}
-            endIcon={<ExpandMoreIcon />}
-            variant="text"
-            style={{ marginLeft: 20 }}
+              <MenuItem onClick={handleCloseTR}>
+                <TurkishFlag
+                  style={{ marginRight: 20, width: 24, height: 24 }}
+                />
+                Türkçe
+              </MenuItem>
+              <MenuItem onClick={handleCloseEN}>
+                <EnglishFlag
+                  style={{ marginRight: 20, width: 24, height: 24 }}
+                />
+                English
+              </MenuItem>
+            </Menu>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Drawer
+        className={classes.drawer}
+        anchor="left"
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <Box width="100%" display="flex" p={2} mt={1}>
+          <Typography
+            variant="h6"
+            color="primary"
+            align="left"
+            className={classes.title}
+            onClick={() => {
+              navigate("/");
+              setMobileMenuOpen(false);
+            }}
           >
-            {locale.languageLong}
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
+            Netan Beauty
+          </Typography>
+        </Box>
+
+        <List>
+          <ListItem
+            button
+            onClick={() => {
+              navigate("/urunler");
+              setMobileMenuOpen(false);
+            }}
           >
-            <MenuItem onClick={handleCloseTR}>
-              <TurkishFlag style={{ marginRight: 20, width: 24, height: 24 }} />
-              Türkçe
-            </MenuItem>
-            <MenuItem onClick={handleCloseEN}>
-              <EnglishFlag style={{ marginRight: 20, width: 24, height: 24 }} />
-              English
-            </MenuItem>
-          </Menu>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            <ListItemText primary={locale.pages.products} />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              navigate("/hakkimizda");
+            }}
+          >
+            <ListItemText primary={locale.pages.about} />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              navigate("/iletisim");
+            }}
+          >
+            <ListItemText primary={locale.pages.contact} />
+          </ListItem>
+        </List>
+      </Drawer>
+    </>
   );
-}
+};
+
+export default Topbar;
