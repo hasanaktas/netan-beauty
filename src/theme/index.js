@@ -5,13 +5,13 @@ import typography from "./typography";
 let theme = createMuiTheme({
   palette: {
     background: {
-      dark: "#F4F6F8",
-      default: colors.common.white,
-      paper: colors.common.white,
+      default: "#F4F6F8",
+      paper: "white",
     },
     primary: {
       main: "#990099",
     },
+    alternative: "rgb(247, 249, 250)",
     secondary: {
       main: "#F7DCF2",
     },

@@ -11,7 +11,7 @@ const useStyles = makeStyles(() =>
       html: {
         "-webkit-font-smoothing": "antialiased",
         "-moz-osx-font-smoothing": "grayscale",
-
+        scrollBehavior: "smooth",
         width: "100%",
       },
       body: {

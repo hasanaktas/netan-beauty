@@ -11,15 +11,10 @@ import {
   Button,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { Page } from "components";
+import { Page, Section } from "components";
 import { useProducts, useLocale } from "hooks";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-
   media: {
     height: "auto",
     width: "100%",
@@ -37,8 +32,8 @@ const ProductsPage = () => {
     navigate(`/urun/${id}`);
   };
   return (
-    <Page title="Ürünler" className={classes.root}>
-      <Container>
+    <Page title="Ürünler">
+      <Section alternative>
         <Grid container spacing={3} justify="center">
           {products.map((item, index) => (
             <Grid key={index} item xs={12} sm={6} md={4}>
@@ -78,7 +73,7 @@ const ProductsPage = () => {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Section>
     </Page>
   );
 };

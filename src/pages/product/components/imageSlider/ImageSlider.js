@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  makeStyles,
-  Typography,
-  IconButton,
-  Box,
-  Grid,
-  Container,
-} from "@material-ui/core";
+import { makeStyles, IconButton, Box, Container } from "@material-ui/core";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { ArrowLeft, ArrowRight } from "@material-ui/icons";
@@ -24,31 +17,7 @@ const useStyles = makeStyles((theme) => ({
     objectFit: "cover",
     display: "block",
   },
-  imgOverlay: {
-    position: "absolute",
-    left: 0,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    right: 0,
-    top: 0,
-    bottom: 0,
-    display: "flex",
-    height: " 100%",
-    width: "100%",
-    zIndex: 100,
-    flexDirection: "column",
-  },
-  imageOverlayContainer: {
-    maxWidth: 1300,
-    width: "100%",
-    height: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    padding: theme.spacing(12),
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-  },
+
   titleContainer: {
     height: "100%",
     display: "flex",
