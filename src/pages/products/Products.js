@@ -36,7 +36,7 @@ const ProductsPage = () => {
       <Section alternative>
         <Grid container spacing={3} justify="center">
           {products.map((item, index) => (
-            <Grid key={index} item xs={12} sm={6} md={4}>
+            <Grid key={index} item xs={6} md={3}>
               <Card>
                 <CardActionArea onClick={() => goProduct(item.seoUrl)}>
                   <img
