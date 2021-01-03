@@ -7,6 +7,7 @@ import {
   BoxesSection,
   PromotionSection,
   SkinToneSection,
+  EasyToUseSection,
 } from "./sections";
 
 const ProductPage = () => {
@@ -27,6 +28,9 @@ const ProductPage = () => {
       </Section>
       <Section alternative>
         <SkinToneSection />
+      </Section>
+      <Section>
+        <EasyToUseSection product={product} />
       </Section>
     </Page>
   );
