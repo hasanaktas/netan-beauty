@@ -27,13 +27,17 @@ const ProductPage = () => {
       <Section maxWidth="md">
         <PromotionSection product={product} />
       </Section>
+      {product.canIUse && (
+        <Section alternative>
+          <SkinToneSection />
+        </Section>
+      )}
+      {product.canGraphic && (
+        <Section maxWidth="md">
+          <GraphicSection />
+        </Section>
+      )}
 
-      <Section alternative>
-        <SkinToneSection />
-      </Section>
-      <Section maxWidth="md">
-        <GraphicSection />
-      </Section>
       <Section alternative>
         <EasyToUseSection product={product} />
       </Section>

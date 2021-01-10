@@ -18,7 +18,9 @@ import {
   Dialog,
   DialogTitle,
   DialogActions,
+  FormControlLabel,
   Button,
+  Checkbox,
 } from "@material-ui/core";
 import { TwitterPicker } from "react-color";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -180,6 +182,42 @@ const AdminProductPage = () => {
                   }
                   value={product.seoUrl}
                   variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={product.canIUse}
+                      onChange={(e) =>
+                        setProduct({
+                          ...product,
+                          canIUse: e.target.checked,
+                        })
+                      }
+                      name="checkedA"
+                      color="primary"
+                    />
+                  }
+                  label="Bu Ürünü Kullanabilir miyim ?"
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={product.canGraphic}
+                      onChange={(e) =>
+                        setProduct({
+                          ...product,
+                          canGraphic: e.target.checked,
+                        })
+                      }
+                      name="checkedA"
+                      color="primary"
+                    />
+                  }
+                  label="Karşılaştırma Grafiği"
                 />
               </Grid>
               <Divider />

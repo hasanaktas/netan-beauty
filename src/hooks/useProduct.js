@@ -14,6 +14,8 @@ const useProduct = (seoUrl, productId) => {
       tr: "",
       en: "",
     },
+    canIUse: true,
+    canGraphic: true,
     price: {
       normal: 0,
       pseudo: 0,
