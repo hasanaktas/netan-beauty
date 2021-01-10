@@ -1,0 +1,88 @@
+import React from "react";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Divider,
+  Grid,
+  TextField,
+  Container,
+} from "@material-ui/core";
+import { Loading } from "components";
+import { useDetails, useSnack } from "hooks";
+
+const AdminAboutPage = () => {
+  const { error, loading, details, setDetails, saveFda } = useDetails();
+  const snack = useSnack();
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    snack("HATA", "error");
+    return <div>Bir Hata Meydana Geldi</div>;
+  }
+
+  return (
+    <Container maxWidth="lg">
+      <Card>
+        <CardHeader subheader="FDA içeriğini düzenle" title="FDA" />
+        <Divider />
+        <CardContent>
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
+              <TextField
+                fullWidth
+                label="İçerik - Türkçe"
+                value={details.fda.content.tr}
+                multiline
+                variant="outlined"
+                onChange={(e) => {
+                  const newDetails = { ...details };
+                  newDetails.fda.content.tr = e.target.value;
+                  setDetails(newDetails);
+                }}
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextField
+                fullWidth
+                label="İçerik - İngilizce"
+                value={details.fda.content.en}
+                multiline
+                variant="outlined"
+                onChange={(e) => {
+                  const newDetails = { ...details };
+                  newDetails.fda.content.en = e.target.value;
+                  setDetails(newDetails);
+                }}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  saveFda()
+                    .then(() => {
+                      snack("KAYDEDİLDİ", "success");
+                    })
+                    .catch(() => {
+                      snack("HATA MEYDANA GELDİ", "error");
+                    });
+                }}
+              >
+                Kaydet
+              </Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+    </Container>
+  );
+};
+
+export default AdminAboutPage;

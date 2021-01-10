@@ -47,6 +47,13 @@ const useDetails = () => {
       .doc("home")
       .set(details.home);
   };
+  const saveFda = async () => {
+    return firebase
+      .firestore()
+      .collection("details")
+      .doc("fda")
+      .set(details.fda);
+  };
 
   return {
     error,
@@ -56,6 +63,7 @@ const useDetails = () => {
     saveContact,
     saveAbout,
     saveHome,
+    saveFda,
   };
 };
 

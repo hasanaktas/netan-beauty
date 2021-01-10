@@ -105,6 +105,9 @@ const Topbar = () => {
               <Button color="inherit" onClick={() => navigate("/hakkimizda")}>
                 {locale.pages.about}
               </Button>
+              <Button color="inherit" onClick={() => navigate("/fda")}>
+                FDA
+              </Button>
               <Button color="inherit" onClick={() => navigate("/iletisim")}>
                 {locale.pages.contact}
               </Button>
@@ -185,6 +188,15 @@ const Topbar = () => {
             }}
           >
             <ListItemText primary={locale.pages.about} />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              navigate("/fda");
+            }}
+          >
+            <ListItemText primary="FDA" />
           </ListItem>
           <ListItem
             button

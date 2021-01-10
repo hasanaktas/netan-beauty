@@ -5,6 +5,7 @@ import { MainLayout, AdminLayout } from "layouts";
 import HomePage from "./home";
 import AboutPage from "./about";
 import ContactPage from "./contact";
+import FdaPage from "./fda";
 import ProductPage from "./product";
 import ProductsPage from "./products";
 import NotFoundPage from "./notFound";
@@ -16,7 +17,7 @@ import AdminContactPage from "./admin/contact";
 import AdminProductsPage from "./admin/products";
 import AdminProductPage from "./admin/product";
 import AdminHomePage from "./admin/home";
-
+import AdminFdaPage from "./admin/fda";
 const routes = (isLoggedIn) => [
   {
     path: "/",
@@ -25,6 +26,7 @@ const routes = (isLoggedIn) => [
       { path: "/", element: <HomePage /> },
       { path: "/iletisim", element: <ContactPage /> },
       { path: "/hakkimizda", element: <AboutPage /> },
+      { path: "/fda", element: <FdaPage /> },
       { path: "/urunler", element: <ProductsPage /> },
       { path: "/urun/:productId", element: <ProductPage /> },
       { path: "404", element: <NotFoundPage /> },
@@ -38,6 +40,7 @@ const routes = (isLoggedIn) => [
       { path: "/", element: <Navigate to="/admin/home" /> },
       { path: "/home", element: <AdminHomePage /> },
       { path: "/about", element: <AdminAboutPage /> },
+      { path: "/fda", element: <AdminFdaPage /> },
       { path: "/contact", element: <AdminContactPage /> },
       { path: "/products", element: <AdminProductsPage /> },
       { path: "/product/:productId", element: <AdminProductPage /> },
