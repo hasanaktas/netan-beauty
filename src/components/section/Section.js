@@ -15,15 +15,30 @@ const useStyles = makeStyles((theme) => ({
   alternative: {
     backgroundColor: theme.palette.alternative,
   },
+  alternative2: {
+    backgroundColor: "#D76AEB",
+  },
+  alternative3: {
+    backgroundColor: "#e040fb",
+  },
 }));
 const Section = (props) => {
   const classes = useStyles();
-  const { children, alternative, maxWidth, mini } = props;
+  const {
+    children,
+    alternative,
+    maxWidth,
+    mini,
+    alternative2,
+    alternative3,
+  } = props;
   return (
     <section
       className={clsx(
         classes.root,
         alternative && classes.alternative,
+        alternative2 && classes.alternative2,
+        alternative3 && classes.alternative3,
         mini && classes.mini
       )}
     >

@@ -10,7 +10,12 @@ const MainSection = () => {
     <>
       {details.home.sections.map((item, index) => {
         return (
-          <Section key={index} alternative={index % 2 === 0} mini>
+          <Section
+            key={index}
+            alternative2={index % 2 === 0}
+            alternative3={index % 2 === 1}
+            mini
+          >
             <Grid container spacing={3}>
               <Box clone order={{ xs: 1, md: index % 2 === 0 ? 1 : 2 }}>
                 <Grid item xs={12} md={6}>
@@ -40,6 +45,7 @@ const MainSection = () => {
                     <Typography
                       color="primary"
                       variant="h4"
+                      style={{ color: "#fff" }}
                       align="center"
                       gutterBottom
                     >
