@@ -1,12 +1,21 @@
 import React from "react";
-import { Grid, Typography, Box, Button } from "@material-ui/core";
+import { Grid, Typography, Box, Button, makeStyles } from "@material-ui/core";
 import { useFirebase, useLocale } from "hooks";
 import { useNavigate } from "react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  media: {
+    height: 300,
+    width: "auto",
+    objectFit: "cover",
+  },
+}));
+
 const ProductsSection = () => {
   const [locale] = useLocale();
   const { products } = useFirebase();
   let navigate = useNavigate();
-
+  const classes = useStyles();
   const goProduct = (id) => {
     navigate(`/urun/${id}`);
   };
@@ -33,7 +42,7 @@ const ProductsSection = () => {
                 <img
                   alt={item.name.tr}
                   src={item.options[0].images[0]}
-                  style={{ width: "70%", height: "auto" }}
+                  className={classes.media}
                 />
               </Box>
 

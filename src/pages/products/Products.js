@@ -15,9 +15,20 @@ import { useLocale, useFirebase } from "hooks";
 
 const useStyles = makeStyles((theme) => ({
   media: {
-    height: "auto",
-    width: "100%",
+    height: 300,
+    width: "auto",
     objectFit: "cover",
+  },
+  card: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  actionArea: {
+    overflow: "hidden",
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
   },
 }));
 
@@ -36,9 +47,12 @@ const ProductsPage = () => {
       <Section alternative>
         <Grid container spacing={3} justify="center">
           {products.map((item, index) => (
-            <Grid key={index} item xs={6} md={3}>
-              <Card>
-                <CardActionArea onClick={() => goProduct(item.seoUrl)}>
+            <Grid key={index} item xs={12} md={3}>
+              <Card className={classes.card}>
+                <CardActionArea
+                  onClick={() => goProduct(item.seoUrl)}
+                  className={classes.actionArea}
+                >
                   <img
                     alt="Netan"
                     src={item.options[0].images[0]}
