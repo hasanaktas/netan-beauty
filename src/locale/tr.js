@@ -50,6 +50,11 @@ const locale = {
     email: "E-posta",
     adress: "Adres",
   },
+  graphicSection: {
+    title: "EVDE EN GÜÇLÜ TÜY GİDERME ÇÖZÜMÜ",
+    subTitle:
+      "Ultra yüksek enerji yoğunluğumuz, hassas lazer dalga boyu seçimi ile birleştiğinde, kıl folikülündeki pigmenti etkili bir şekilde hedef alarak tüyü yeniden büyütme özelliğini kalıcı olarak devre dışı bırakır.",
+  },
   followUs: "BİZİ TAKİP EDİN",
 };
 

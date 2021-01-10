@@ -43,6 +43,11 @@ const locale = {
     darkBrown: "dark brown",
     black: "black",
   },
+  graphicSection: {
+    title: "THE MOST POWERFUL AT-HOME HAIR REMOVAL SOLUTION",
+    subTitle:
+      "Our ultra high energy density, coupled with its precise laser wavelength selection, effectively targets the pigment in the hair follicle to permanently disable its ability to regrow hair.",
+  },
   contact: {
     phone: "Phone",
     fax: "Fax",

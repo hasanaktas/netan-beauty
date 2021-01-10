@@ -8,6 +8,7 @@ import {
   PromotionSection,
   SkinToneSection,
   EasyToUseSection,
+  GraphicSection,
 } from "./sections";
 
 const ProductPage = () => {
@@ -26,10 +27,14 @@ const ProductPage = () => {
       <Section maxWidth="md">
         <PromotionSection product={product} />
       </Section>
+
       <Section alternative>
         <SkinToneSection />
       </Section>
-      <Section>
+      <Section maxWidth="md">
+        <GraphicSection />
+      </Section>
+      <Section alternative>
         <EasyToUseSection product={product} />
       </Section>
     </Page>

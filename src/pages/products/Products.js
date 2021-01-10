@@ -76,6 +76,8 @@ const ProductsPage = () => {
                 </CardActionArea>
                 <CardActions>
                   <Button
+                    variant="contained"
+                    fullWidth
                     size="small"
                     color="primary"
                     onClick={() => goProduct(item.seoUrl)}

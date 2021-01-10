@@ -3,6 +3,17 @@ import { Typography, Grid, Box, IconButton } from "@material-ui/core";
 import { useLocale } from "hooks";
 import { icons } from "configs";
 
+const iconColors = [
+  "#f48fb1",
+  "#ce93d8",
+  "#90caf9",
+  "#b39ddb",
+  "#9fa8da",
+  "#80deea",
+  "#80cbc4",
+  "#ffcc80",
+];
+
 const PromotionSection = (props) => {
   const [locale] = useLocale();
   const { product } = props;
@@ -35,14 +46,14 @@ const PromotionSection = (props) => {
             return (
               <Box key={index} display="flex" mb={4}>
                 <Box
-                  mr={1}
+                  mr={2}
                   color="primary"
                   display="flex"
                   justifyContent="flex-start"
                   alignItems="flex-start"
                 >
-                  <IconButton>
-                    <Icon />
+                  <IconButton style={{ backgroundColor: iconColors[index] }}>
+                    <Icon style={{ color: "white" }} />
                   </IconButton>
                 </Box>
 
