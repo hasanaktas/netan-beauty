@@ -173,7 +173,7 @@ const AdminProductPage = () => {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Seo URL "
+                  label="Seo URL"
                   onChange={(e) =>
                     setProduct({
                       ...product,
