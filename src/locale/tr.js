@@ -8,7 +8,7 @@ const locale = {
   },
   goProduct: "ÜRÜNE GİT",
   buy: "ÜRÜNÜ SATIN AL",
-  greatePrice: "AVANTAJLI FİYAT İÇİN İLETİŞİME GEÇİN",
+  greatePrice: "HAVALE/EFT İLE SATIN AL (AVANTAJLI FİYAT)",
   saleChannels: "SATIŞ KANALLARIMIZ",
   canIUseThisProduct: "BU ÜRÜNÜ KULLANABİLİR MİYİM ?",
   canIUseThisProductSubTitle:

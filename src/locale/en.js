@@ -7,7 +7,7 @@ const locale = {
     contact: "CONTACT",
   },
   goProduct: "GO PRODUCT",
-  greatePrice: "CONTACT US FOR ADVANTAGEED PRICE",
+  greatePrice: "BUY WITH TRANSFER / EFT (ADVANTAGEED PRICE)",
   buy: "BUY THE PRODUCT",
   saleChannels: "SALE CHANNELS",
   canIUseThisProduct: "CAN I USE THIS PRODUCT ?",

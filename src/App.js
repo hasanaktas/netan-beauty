@@ -4,6 +4,8 @@ import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import { GlobalStyle } from "components";
 import { LocaleProvider } from "contexts";
 import theme from "theme";
+import { init } from "emailjs-com";
+init("user_NWVZydpRlX8zHZuCH2zKk");
 const App = () => {
   return (
     <LocaleProvider>
