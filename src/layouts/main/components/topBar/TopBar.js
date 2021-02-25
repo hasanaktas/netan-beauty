@@ -99,27 +99,28 @@ const Topbar = () => {
             </Box>
             <Box flex={1} />
             <Hidden xsDown>
-              <Button color="inherit" onClick={() => navigate("/urunler")}>
+              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/urunler")}>
                 {locale.pages.products}
               </Button>
-              <Button color="inherit" onClick={() => navigate("/hakkimizda")}>
+              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/hakkimizda")}>
                 {locale.pages.about}
               </Button>
-              <Button color="inherit" onClick={() => navigate("/fda")}>
+              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/fda")}>
                 FDA
               </Button>
-              <Button color="inherit" onClick={() => navigate("/iletisim")}>
+              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/iletisim")}>
                 {locale.pages.contact}
               </Button>
             </Hidden>
             <Button
               aria-controls="simple-menu"
               aria-haspopup="true"
+              color="primary"
               onClick={handleClick}
               startIcon={<TranslateIcon />}
               endIcon={<ExpandMoreIcon />}
               variant="text"
-              style={{ marginLeft: 20 }}
+              style={{ marginLeft: 20,fontSize:'18px' }}
             >
               {locale.languageLong}
             </Button>
