@@ -80,6 +80,13 @@ const MainSection = (props) => {
         Telefon: ${phone},
         Adres:${adress},
         `,
+        alici: `${firstName} ${lastName}`,
+        adres: adress,
+        telefon: phone,
+        eposta: email,
+        tcno: tcNo,
+        tarih: new Date().toISOString().slice(0, 10),
+        fiyat: product.price.normal, 
       })
       .then(
         (result) => {
