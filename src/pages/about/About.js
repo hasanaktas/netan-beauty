@@ -31,7 +31,7 @@ const AboutPage = () => {
                   height: 0,
                 }}
               >
-			  AAAAAAAA
+			  
                 <iframe
                   title="introVideo"
                   width="565"
