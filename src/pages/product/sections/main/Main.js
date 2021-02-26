@@ -86,6 +86,7 @@ const MainSection = (props) => {
         eposta: email,
         tcno: tcNo,
         tarih: new Date().toISOString().slice(0, 10),
+        urun: product.name.tr,
         fiyat: product.price.normal, 
       })
       .then(
@@ -343,8 +344,7 @@ const MainSection = (props) => {
                       <p class="p1">Fax : 0 312 442 23 51</p>
                       <p class="p2">&nbsp;</p>
                       <p class="p1">
-                        Mersis Numarası :
-                        &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;
+                        Mersis Numarası : 0071042043100013
                       </p>
                       <p class="p2">&nbsp;</p>
                       <p class="p2">&nbsp;</p>
@@ -503,8 +503,7 @@ const MainSection = (props) => {
                       <p class="p1">Fax : 0 312 442 23 51</p>
                       <p class="p2">&nbsp;</p>
                       <p class="p1">
-                        Mersis Numarası :
-                        &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;
+                        Mersis Numarası : 0071042043100013
                       </p>
                       <p class="p2">&nbsp;</p>
                       <p class="p1">1.2. ALICI("T&Uuml;KETİCİ"):</p>
