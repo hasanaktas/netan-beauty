@@ -16,6 +16,7 @@ import {
   MapPin as MapPinIcon,
   Home as HomeIcon,
   Info as InfoIcon,
+  List as ListIcon,
 } from "react-feather";
 
 import NavItem from "./NavItem";
@@ -41,6 +42,11 @@ const items = [
     href: "/admin/products",
     icon: ShoppingBagIcon,
     title: "Ürünler",
+  },
+  {
+    href: "/admin/sss",
+    icon: ListIcon,
+    title: "SSS",
   },
   {
     href: "/admin/fda",

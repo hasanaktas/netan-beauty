@@ -76,7 +76,7 @@ const Topbar = () => {
       >
         <Container>
           <Toolbar>
-            <Hidden smUp>
+            <Hidden mdUp>
               <IconButton
                 edge="start"
                 className={classes.menuButton}
@@ -98,17 +98,40 @@ const Topbar = () => {
               </Typography>
             </Box>
             <Box flex={1} />
-            <Hidden xsDown>
-              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/urunler")}>
+            <Hidden smDown>
+              <Button
+                color="primary"
+                style={{ fontSize: "18px" }}
+                onClick={() => navigate("/urunler")}
+              >
                 {locale.pages.products}
               </Button>
-              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/hakkimizda")}>
+              <Button
+                color="primary"
+                style={{ fontSize: "18px" }}
+                onClick={() => navigate("/hakkimizda")}
+              >
                 {locale.pages.about}
               </Button>
-              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/fda")}>
+              <Button
+                color="primary"
+                style={{ fontSize: "18px" }}
+                onClick={() => navigate("/sss")}
+              >
+                SSS
+              </Button>
+              <Button
+                color="primary"
+                style={{ fontSize: "18px" }}
+                onClick={() => navigate("/fda")}
+              >
                 FDA
               </Button>
-              <Button color="primary" style={{fontSize:'18px'}} onClick={() => navigate("/iletisim")}>
+              <Button
+                color="primary"
+                style={{ fontSize: "18px" }}
+                onClick={() => navigate("/iletisim")}
+              >
                 {locale.pages.contact}
               </Button>
             </Hidden>
@@ -120,7 +143,7 @@ const Topbar = () => {
               startIcon={<TranslateIcon />}
               endIcon={<ExpandMoreIcon />}
               variant="text"
-              style={{ marginLeft: 20,fontSize:'18px' }}
+              style={{ marginLeft: 20, fontSize: "18px" }}
             >
               {locale.languageLong}
             </Button>
@@ -189,6 +212,15 @@ const Topbar = () => {
             }}
           >
             <ListItemText primary={locale.pages.about} />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              navigate("/sss");
+            }}
+          >
+            <ListItemText primary="SSS" />
           </ListItem>
           <ListItem
             button
