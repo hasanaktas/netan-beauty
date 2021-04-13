@@ -10,6 +10,7 @@ const useProducts = () => {
     firebase
       .firestore()
       .collection("products")
+      .orderBy("order")
       .get()
       .then((snapshot) => {
         const products = [];
